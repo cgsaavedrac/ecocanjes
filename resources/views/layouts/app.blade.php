@@ -23,7 +23,7 @@
 </head>
 
 <body class="@yield('body-class')">
-    <nav class="navbar-default" role="navigation" style="margin-bottom: 0px;">
+    <nav class="navbar-default" role="navigation" style="margin-bottom: 0px;background-color: #4caf50;color: #ffffff !important">
         <div class="container-fluid">
             <div class="navbar-header">
                 @auth
@@ -33,18 +33,18 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">{{ Auth::user()->name }}</a>
+                <a class="navbar-brand" href="#" style="color: #ffffff"><i class="material-icons">account_circle</i>{{ Auth::user()->name }}</a>
             </div>
 
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">    
-                    <li><a href="{{ url('/home') }}">Panel de Control</a></li>
+                    <!--<li><a href="{{ url('/home') }}">Panel de Control</a></li>
                     <li><a href="{{ url('/admin/company/') }}">Empresas</a></li>        
                     <li><a href="{{ url('/admin/contact/') }}">Contactos</a></li>
-                    <li><a href="{{ url('admin/deal') }}">Negocios</a></li>
+                    <li><a href="{{ url('admin/deal') }}">Negocios</a></li>-->
                     <li>
                         <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                            Logout
+                            Cerrar sesión
                         </a>
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                             {{ csrf_field() }}

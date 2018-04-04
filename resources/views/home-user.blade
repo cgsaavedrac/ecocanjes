@@ -1,0 +1,24 @@
+@extends('layouts.app')
+
+@section('title', 'Ecocanjes')
+@section('body-class', 'product-page')
+
+@section('content')
+<div class="header header-filter" style="background-image: url('{{ asset('img/bg4.jpeg') }}');">
+</div>
+
+<div class="main main-raised">
+    @if (session('mensaje'))
+        <div class="alert alert-success">
+            {{ session('mensaje') }}
+        </div>
+    @endif
+    <div class="container">
+        <h2>Resumen de Negocios y Actividades</h2>
+        <h2>Ganancias proyectadas para el mes en curso: </h2>
+        <div class="row">    
+        </div>
+    </div>       
+</div>
+@include('includes.footer')
+@endsection
