@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateEquivalencesTable extends Migration
+class CreateMovementTypesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,9 @@ class CreateEquivalencesTable extends Migration
      */
     public function up()
     {
-        Schema::create('equivalences', function (Blueprint $table) {
+        Schema::create('movement_types', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name_equivalence')->default('ECO'); //Nombre de la Equivalencia ECO
-            $table->float('equivalence_amount');
-            $table->float('equivalence_factor');
-            $table->boolean('active')->default(true);
+            $table->string('name');
             $table->timestamps();
         });
     }
@@ -30,6 +27,6 @@ class CreateEquivalencesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('equivalences');
+        Schema::dropIfExists('movement_types');
     }
 }

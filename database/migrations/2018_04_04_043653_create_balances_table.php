@@ -15,15 +15,16 @@ class CreateBalancesTable extends Migration
     {
         Schema::create('balances', function (Blueprint $table) {
             $table->increments('id');
+            //FK movement_type_id ENTRADA O SALIDA
+            $table->integer('movement_type_id')->unsigned();
+            $table->foreign('movement_type_id')->references('id')->on('movement_types');
             //FK user_id quien registra la transacción
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users');
             //FK machine_id registra la maquina en donde se hace la transacción
             $table->integer('machine_id')->unsigned();
             $table->foreign('machine_id')->references('id')->on('machines');
-            $table->float('debit');
-            $table->float('credit');
-            $table->float('balance');
+            $table->float('mount');
             $table->dateTime('transaction_date');
             $table->timestamps();
         });
