@@ -45,18 +45,21 @@
                                     Recordar
                                 </label>
                             </div>
+                            <div class="text-left">
+                                <a href="{{ route('password.request') }}" style="color:#000">
+                                   ¿Olvidaste tu contraseña?
+                                </a>
+                            </div>
                         </div>
                         <div class="footer text-center">
-                            <button type="submit" class="btn btn-success"><i class="material-icons">fingerprint</i> Ingresar</button>
+                            <button type="submit" class="btn btn-success btn-round"><i class="material-icons">fingerprint</i> Ingresar</button>
+                        </div>
+                        <div class="text-center">
+                            ¿Aún no tienes cuenta?
                         </div>
                         <div class="footer text-center">
-                            <a class="btn btn-success" href="{{ route('password.request') }}">
-                               <i class="material-icons">autorenew</i> Olvidó su contraseña?
-                            </a>
-                        </div>
-                        <div class="footer text-center">
-                            <a class="btn btn-success" href="{{ route('register') }}">
-                               <i class="material-icons">person</i> Registrarse
+                            <a class="btn btn-success btn-round" href="{{ route('register') }}">
+                               <i class="material-icons">person</i> Registrate
                             </a>
                         </div>    
                     </form>

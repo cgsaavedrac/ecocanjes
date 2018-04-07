@@ -18,8 +18,8 @@ class CreateMachineLocationsTable extends Migration
             //FK machine_id
             $table->integer('machine_id')->unsigned();
             $table->foreign('machine_id')->references('id')->on('machines');
-            $table->geometry('latitude');
-            $table->geometry('longitude');
+            $table->string('latitude');
+            $table->string('longitude');
             $table->boolean('active')->default(true);
             $table->timestamps();
         });
