@@ -21,9 +21,6 @@ class CreateBalancesTable extends Migration
             //FK user_id quien registra la transacción
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users');
-            //FK machine_id registra la maquina en donde se hace la transacción
-            $table->integer('machine_id')->unsigned();
-            $table->foreign('machine_id')->references('id')->on('machines');
             $table->float('mount');
             $table->dateTime('transaction_date');
             $table->timestamps();
