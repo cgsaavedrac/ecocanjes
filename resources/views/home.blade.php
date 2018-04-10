@@ -102,6 +102,7 @@
                                           <td class="text-center">ID</td>
                                           <td>Máquina</td>
                                           <td>Ubicación</td>
+                                          <td>Comuna</td>
                                           <td>Distancia</td>
                                       </tr>
                                   </thead>
@@ -111,6 +112,7 @@
                                           <td class="text-center">{{ $ubicacion_maquina->id}}</td>
                                           <td>{{ $ubicacion_maquina->machine->terminal_number}}</td>
                                           <td>{{ $ubicacion_maquina->address }}</td>
+                                          <td>{{ $ubicacion_maquina->city->name }}</td>
                                           <td id="distancia{{ $ubicacion_maquina->id }}"></td>
                                       </tr>
                                       @endforeach
