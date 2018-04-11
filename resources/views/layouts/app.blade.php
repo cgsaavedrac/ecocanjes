@@ -67,6 +67,6 @@
     <script src="{{ asset('js/bootstrap-datepicker.js') }}" type="text/javascript"></script>
     <!-- Control Center for Material Kit: activating the ripples, parallax effects, scripts from the example pages etc -->
     <script src="{{ asset('js/material-kit.js') }}" type="text/javascript"></script>
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBso25wWBAGogK7OoheU_UqEIm10Y2Gyn8&callback=initMap"></script>
+    
 </body>
 </html>
