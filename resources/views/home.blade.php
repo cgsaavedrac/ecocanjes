@@ -273,6 +273,7 @@ function initMap(){
     }
   function showError(error)
     {
+      var x='';
     switch(error.code) 
       {
       case error.PERMISSION_DENIED:
