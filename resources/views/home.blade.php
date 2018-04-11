@@ -176,8 +176,6 @@
                               <table class="table table-condensed">
                                   <thead>
                                       <tr style="color: #00529e;font-weight: 500;">
-                                          <td class="text-center">ID</td>
-                                          <td>Máquina</td>
                                           <td>Ubicación</td>
                                           <td>Comuna</td>
                                           <td>Distancia</td>
@@ -186,8 +184,6 @@
                                   <tbody>
                                       @foreach ($ubicacion_maquinas as $ubicacion_maquina)
                                       <tr>
-                                          <td class="text-center">{{ $ubicacion_maquina->id}}</td>
-                                          <td>{{ $ubicacion_maquina->machine->terminal_number}}</td>
                                           <td>{{ $ubicacion_maquina->address }}</td>
                                           <td>{{ $ubicacion_maquina->city->name }}</td>
                                           <td id="distancia{{ $ubicacion_maquina->id }}"></td>
@@ -272,7 +268,7 @@ function initMap(){
       var a{{ $ubicacion_maquina->id }} = Math.sin(dLat{{ $ubicacion_maquina->id }}/2) * Math.sin(dLat{{ $ubicacion_maquina->id }}/2) + Math.cos(rad(latitud)) * Math.cos(rad(lat{{ $ubicacion_maquina->id }})) * Math.sin(dLong{{ $ubicacion_maquina->id }}/2) * Math.sin(dLong{{ $ubicacion_maquina->id }}/2);
       var c{{ $ubicacion_maquina->id }} = 2 * Math.atan2(Math.sqrt(a{{ $ubicacion_maquina->id }}), Math.sqrt(1-a{{ $ubicacion_maquina->id }}));
       var d{{ $ubicacion_maquina->id }} = R * c{{ $ubicacion_maquina->id }};
-      document.getElementById("distancia{{ $ubicacion_maquina->id }}").innerHTML=d{{ $ubicacion_maquina->id }}.toFixed(3) + " Kilometros de distancia";
+      document.getElementById("distancia{{ $ubicacion_maquina->id }}").innerHTML=d{{ $ubicacion_maquina->id }}.toFixed(3) + " Kms";
     @endforeach  
     }
   function showError(error)
