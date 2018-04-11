@@ -4,6 +4,78 @@
 @section('body-class', 'product-page')
 
 @section('content')
+<style>
+#contenedor {
+  width:100px;
+  height:100px;
+  padding-left: 50%;
+}
+  .loader {
+  font-size: 20px;
+  margin: 45% auto;
+  width: 0.5em;
+  height: 0.5em;
+  border-radius: 50%;
+  position: relative;
+  text-indent: -9999em;
+  -webkit-animation: load4 1.3s infinite linear;
+  animation: load4 1.3s infinite linear;
+}
+@-webkit-keyframes load4 {
+  0%,
+  100% {
+    box-shadow: 0em -3em 0em 0.2em #4caf50, 2em -2em 0 0em #4caf50, 3em 0em 0 -0.5em #4caf50, 2em 2em 0 -0.5em #4caf50, 0em 3em 0 -0.5em #4caf50, -2em 2em 0 -0.5em #4caf50, -3em 0em 0 -0.5em #4caf50, -2em -2em 0 0em #4caf50;
+  }
+  12.5% {
+    box-shadow: 0em -3em 0em 0em #4caf50, 2em -2em 0 0.2em #4caf50, 3em 0em 0 0em #4caf50, 2em 2em 0 -0.5em #4caf50, 0em 3em 0 -0.5em #4caf50, -2em 2em 0 -0.5em #4caf50, -3em 0em 0 -0.5em #4caf50, -2em -2em 0 -0.5em #4caf50;
+  }
+  25% {
+    box-shadow: 0em -3em 0em -0.5em #4caf50, 2em -2em 0 0em #4caf50, 3em 0em 0 0.2em #4caf50, 2em 2em 0 0em #4caf50, 0em 3em 0 -0.5em #4caf50, -2em 2em 0 -0.5em #4caf50, -3em 0em 0 -0.5em #4caf50, -2em -2em 0 -0.5em #4caf50;
+  }
+  37.5% {
+    box-shadow: 0em -3em 0em -0.5em #4caf50, 2em -2em 0 -0.5em #4caf50, 3em 0em 0 0em #4caf50, 2em 2em 0 0.2em #4caf50, 0em 3em 0 0em #4caf50, -2em 2em 0 -0.5em #4caf50, -3em 0em 0 -0.5em #4caf50, -2em -2em 0 -0.5em #4caf50;
+  }
+  50% {
+    box-shadow: 0em -3em 0em -0.5em #4caf50, 2em -2em 0 -0.5em #4caf50, 3em 0em 0 -0.5em #4caf50, 2em 2em 0 0em #4caf50, 0em 3em 0 0.2em #4caf50, -2em 2em 0 0em #4caf50, -3em 0em 0 -0.5em #4caf50, -2em -2em 0 -0.5em #4caf50;
+  }
+  62.5% {
+    box-shadow: 0em -3em 0em -0.5em #4caf50, 2em -2em 0 -0.5em #4caf50, 3em 0em 0 -0.5em #4caf50, 2em 2em 0 -0.5em #4caf50, 0em 3em 0 0em #4caf50, -2em 2em 0 0.2em #4caf50, -3em 0em 0 0em #4caf50, -2em -2em 0 -0.5em #4caf50;
+  }
+  75% {
+    box-shadow: 0em -3em 0em -0.5em #4caf50, 2em -2em 0 -0.5em #4caf50, 3em 0em 0 -0.5em #4caf50, 2em 2em 0 -0.5em #4caf50, 0em 3em 0 -0.5em #4caf50, -2em 2em 0 0em #4caf50, -3em 0em 0 0.2em #4caf50, -2em -2em 0 0em #4caf50;
+  }
+  87.5% {
+    box-shadow: 0em -3em 0em 0em #4caf50, 2em -2em 0 -0.5em #4caf50, 3em 0em 0 -0.5em #4caf50, 2em 2em 0 -0.5em #4caf50, 0em 3em 0 -0.5em #4caf50, -2em 2em 0 0em #4caf50, -3em 0em 0 0em #4caf50, -2em -2em 0 0.2em #4caf50;
+  }
+}
+@keyframes load4 {
+  0%,
+  100% {
+    box-shadow: 0em -3em 0em 0.2em #4caf50, 2em -2em 0 0em #4caf50, 3em 0em 0 -0.5em #4caf50, 2em 2em 0 -0.5em #4caf50, 0em 3em 0 -0.5em #4caf50, -2em 2em 0 -0.5em #4caf50, -3em 0em 0 -0.5em #4caf50, -2em -2em 0 0em #4caf50;
+  }
+  12.5% {
+    box-shadow: 0em -3em 0em 0em #4caf50, 2em -2em 0 0.2em #4caf50, 3em 0em 0 0em #4caf50, 2em 2em 0 -0.5em #4caf50, 0em 3em 0 -0.5em #4caf50, -2em 2em 0 -0.5em #4caf50, -3em 0em 0 -0.5em #4caf50, -2em -2em 0 -0.5em #4caf50;
+  }
+  25% {
+    box-shadow: 0em -3em 0em -0.5em #4caf50, 2em -2em 0 0em #4caf50, 3em 0em 0 0.2em #4caf50, 2em 2em 0 0em #4caf50, 0em 3em 0 -0.5em #4caf50, -2em 2em 0 -0.5em #4caf50, -3em 0em 0 -0.5em #4caf50, -2em -2em 0 -0.5em #4caf50;
+  }
+  37.5% {
+    box-shadow: 0em -3em 0em -0.5em #4caf50, 2em -2em 0 -0.5em #4caf50, 3em 0em 0 0em #4caf50, 2em 2em 0 0.2em #4caf50, 0em 3em 0 0em #4caf50, -2em 2em 0 -0.5em #4caf50, -3em 0em 0 -0.5em #4caf50, -2em -2em 0 -0.5em #4caf50;
+  }
+  50% {
+    box-shadow: 0em -3em 0em -0.5em #4caf50, 2em -2em 0 -0.5em #4caf50, 3em 0em 0 -0.5em #4caf50, 2em 2em 0 0em #4caf50, 0em 3em 0 0.2em #4caf50, -2em 2em 0 0em #4caf50, -3em 0em 0 -0.5em #4caf50, -2em -2em 0 -0.5em #4caf50;
+  }
+  62.5% {
+    box-shadow: 0em -3em 0em -0.5em #4caf50, 2em -2em 0 -0.5em #4caf50, 3em 0em 0 -0.5em #4caf50, 2em 2em 0 -0.5em #4caf50, 0em 3em 0 0em #4caf50, -2em 2em 0 0.2em #4caf50, -3em 0em 0 0em #4caf50, -2em -2em 0 -0.5em #4caf50;
+  }
+  75% {
+    box-shadow: 0em -3em 0em -0.5em #4caf50, 2em -2em 0 -0.5em #4caf50, 3em 0em 0 -0.5em #4caf50, 2em 2em 0 -0.5em #4caf50, 0em 3em 0 -0.5em #4caf50, -2em 2em 0 0em #4caf50, -3em 0em 0 0.2em #4caf50, -2em -2em 0 0em #4caf50;
+  }
+  87.5% {
+    box-shadow: 0em -3em 0em 0em #4caf50, 2em -2em 0 -0.5em #4caf50, 3em 0em 0 -0.5em #4caf50, 2em 2em 0 -0.5em #4caf50, 0em 3em 0 -0.5em #4caf50, -2em 2em 0 0em #4caf50, -3em 0em 0 0em #4caf50, -2em -2em 0 0.2em #4caf50;
+  }
+}
+</style>
 <div class="header header-filter" style="background-image: url('{{ asset('img/bg4.jpeg') }}');">
 </div>
 
@@ -94,7 +166,12 @@
                 <div role="tabpanel" class="tab-pane" id="ubicacion2">
                     <div class="container">
                         <div class="container">
-                            <div id="mapholder"></div>
+                            <div id="mapholder">
+                              <div id="contenedor" align="center">
+                                <div class="loader" id="loader">Loading...</div>
+                              </div>
+                              <p style="text-align:center"><strong>Cargando mapa...</strong></p>
+                            </div>
                             <div class="table-responsive">
                               <table class="table table-condensed">
                                   <thead>
