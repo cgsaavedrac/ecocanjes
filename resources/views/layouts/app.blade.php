@@ -42,7 +42,7 @@
                     <li><a href="{{ url('/admin/contact/') }}">Contactos</a></li>
                     <li><a href="{{ url('admin/deal') }}">Negocios</a></li>-->
                     <li>
-                        <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                        <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" style="color:#ffffff">
                             Cerrar sesión
                         </a>
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
