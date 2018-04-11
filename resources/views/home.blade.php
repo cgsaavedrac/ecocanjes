@@ -161,8 +161,7 @@
     </div>       
 </div>
 <script>
-//<![CDATA[
-//var x=document.getElementById("demo");
+
 navigator.geolocation.getCurrentPosition(showPosition,showError);
 function showPosition(position)
   {
@@ -217,7 +216,6 @@ function showError(error)
       break;
     }
   }
-  //]]>
 </script>
 @include('includes.footer')
 @endsection
