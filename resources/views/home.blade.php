@@ -234,7 +234,6 @@
     </div>       
 </div>
 <script>
-  alert("hola mundo");
 function initMap(){
   navigator.geolocation.getCurrentPosition(showPosition,showError);
   function showPosition(position)
