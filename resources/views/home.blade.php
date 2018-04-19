@@ -235,10 +235,13 @@
 </div>
 <script>
 function initMap(){
+  
   navigator.geolocation.getCurrentPosition(showPosition,showError);
   function showPosition(position)
     {
+    alert("hola");
     lat=position.coords.latitude;
+    
     lon=position.coords.longitude;
     latlon=new google.maps.LatLng(lat, lon)
     mapholder=document.getElementById('mapholder')
@@ -247,8 +250,14 @@ function initMap(){
     center:latlon,zoom:10,
     mapTypeId:google.maps.MapTypeId.ROADMAP,
     mapTypeControl:false,
+    //timeout: 50000000,
     navigationControlOptions:{style:google.maps.NavigationControlStyle.SMALL}
     };
+    //var PositionOptions = {
+    //timeout: 5000,
+    //maximumAge: 60000,
+    //enableHighAccuracy: true
+    //};
     var map=new google.maps.Map(document.getElementById("mapholder"),myOptions);
     var marker=new google.maps.Marker({position:latlon,map:map,title:"Tú estas aquí!"});
     @foreach ($ubicacion_maquinas as $ubicacion_maquina)
@@ -277,16 +286,16 @@ function initMap(){
     switch(error.code) 
       {
       case error.PERMISSION_DENIED:
-        x.innerHTML="Denegada la peticion de Geolocalización en el navegador."
+        alert("Denegada la peticion de Geolocalización en el navegador.")
         break;
       case error.POSITION_UNAVAILABLE:
-        x.innerHTML="La información de la localización no esta disponible."
+        alert("La información de la localización no esta disponible.")
         break;
       case error.TIMEOUT:
-        x.innerHTML="El tiempo de petición ha expirado."
+        alert("El tiempo de petición ha expirado.")
         break;
       case error.UNKNOWN_ERROR:
-        x.innerHTML="Ha ocurrido un error desconocido."
+        alert("Ha ocurrido un error desconocido.")
         break;
       }
     }
