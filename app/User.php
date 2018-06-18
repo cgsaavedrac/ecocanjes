@@ -6,6 +6,7 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\Balance;
 use App\RecyclingRecord;
+use App\Exchange;
 
 class User extends Authenticatable
 {
@@ -35,5 +36,9 @@ class User extends Authenticatable
 
     public function recycling_records(){
         return $this->hasMany(RecyclingRecord::class);
+    }
+
+    public function exchanges(){
+        return $this->hasMany(Exchange::class);
     }
 }

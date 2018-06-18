@@ -36,12 +36,15 @@
             </div>
 
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav">    
-                    <!--<li><a href="{{ url('/home') }}">Panel de Control</a></li>
-                    <li><a href="{{ url('/admin/company/') }}">Empresas</a></li>        
-                    <li><a href="{{ url('/admin/contact/') }}">Contactos</a></li>
-                    <li><a href="{{ url('admin/deal') }}">Negocios</a></li>-->
+                <ul class="nav navbar-nav">
+                    @if (auth()->user()->admin == '1')    
+                    <li><a href="{{ url('/home') }}" style="color:#ffffff">Panel de Control</a></li>
+                    <li><a href="{{ url('/admin/user/') }}" style="color:#ffffff">Usuarios</a></li>        
+                    <li><a href="{{ url('/admin/machine/') }}" style="color:#ffffff">Maquinas</a></li>
+                    <li><a href="{{ url('admin/exchange') }}" style="color:#ffffff">Canjes</a></li>
+                    @endif 
                     <li>
+                       
                         <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" style="color:#ffffff">
                             Cerrar sesión
                         </a>
@@ -66,6 +69,7 @@
     <!--  Plugin for the Datepicker, full documentation here: http://www.eyecon.ro/bootstrap-datepicker/ -->
     <script src="{{ asset('js/bootstrap-datepicker.js') }}" type="text/javascript"></script>
     <!-- Control Center for Material Kit: activating the ripples, parallax effects, scripts from the example pages etc -->
+    <script src="{{ asset('js/dropdown.js') }}" type="text/javascript"></script>
     <script src="{{ asset('js/material-kit.js') }}" type="text/javascript"></script>
     
 </body>

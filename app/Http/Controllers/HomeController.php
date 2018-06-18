@@ -5,10 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Balance;
 use App\RecyclingRecord;
-use App\MachineLocation;
 use App\Exchange;
 use App\Equivalence;
 use Carbon\Carbon;
+use App\Machine;
+use DB;
 
 class HomeController extends Controller
 {
@@ -29,25 +30,36 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $user_id = auth()->user()->id;
-        $user_balance_entradas = Balance::where('movement_type_id','=','1')->where('user_id', '=', $user_id)->sum('mount');
-        $user_balance_salidas = Balance::where('movement_type_id','=','2')->where('user_id', '=', $user_id)->sum('mount');
-        $cantidad_reciclada = RecyclingRecord::where('user_id', $user_id)->count();
-        $user_movimientos = Balance::where('user_id', $user_id)->paginate(6);
-        //33 botellas es un kilo de pet
-        //1 botella = 30 gramos
-        $kilos_reciclados = (($cantidad_reciclada * 1000) / 33)/100;
-        //EQUIVALENCIAS PLASTICOS
+        if (auth()->user()->admin == 'false'){
 
-        //1 Kg de plástico ahorra 39.26 Lts de agua
-        $ahorro_agua_plastico = number_format($kilos_reciclados * 39.26, 4, ',', '.');
-        //1 Kg de plástico = 2.506 Kg de bióxido de carbono ahorrado
-        $ahorro_bioxido_carbono_plastico = number_format($kilos_reciclados * 2.506, 4, ',', '.');
-        //1 Kg de plástico = 5.0286 Kw de energía ahorrada
-        $ahorro_energia_plastico = number_format($kilos_reciclados * 5.0286, 4, ',', '.');
-        $ubicacion_maquinas = MachineLocation::where('active', '1')->paginate(6);
-        $user_saldo = $user_balance_entradas - $user_balance_salidas;
-        return view('home')->with(compact('user_saldo', 'cantidad_reciclada', 'ahorro_agua_plastico', 'ahorro_bioxido_carbono_plastico', 'ahorro_energia_plastico', 'user_movimientos', 'ubicacion_maquinas'));
+            $user_id = auth()->user()->id;
+            $user_balance_entradas = Balance::where('movement_type_id','=','1')->where('user_id', '=', $user_id)->sum('mount');
+            $user_balance_salidas = Balance::where('movement_type_id','=','2')->where('user_id', '=', $user_id)->sum('mount');
+            $cantidad_reciclada = RecyclingRecord::where('user_id', $user_id)->count();
+            $user_movimientos = Balance::where('user_id', $user_id)->paginate(6);
+            //33 botellas es un kilo de pet
+            //1 botella = 30 gramos
+            $kilos_reciclados = (($cantidad_reciclada * 1000) / 33)/100;
+            //EQUIVALENCIAS PLASTICOS
+
+            //1 Kg de plástico ahorra 39.26 Lts de agua
+            $ahorro_agua_plastico = number_format($kilos_reciclados * 39.26, 4, ',', '.');
+            //1 Kg de plástico = 2.506 Kg de bióxido de carbono ahorrado
+            $ahorro_bioxido_carbono_plastico = number_format($kilos_reciclados * 2.506, 4, ',', '.');
+            //1 Kg de plástico = 5.0286 Kw de energía ahorrada
+            $ahorro_energia_plastico = number_format($kilos_reciclados * 5.0286, 4, ',', '.');
+            $ubicacion_maquinas = Machine::where('active', '1')->paginate(6);
+            $user_saldo = $user_balance_entradas - $user_balance_salidas;
+            return view('home')->with(compact('user_saldo', 'cantidad_reciclada', 'ahorro_agua_plastico', 'ahorro_bioxido_carbono_plastico', 'ahorro_energia_plastico', 'user_movimientos', 'ubicacion_maquinas'));
+        }
+    else{
+            $mes_actual = date('F');
+            $resumen_comunas = DB::select('SELECT cities.name, SUM(recycling_records.quantity) as cantidad from recycling_records, machines, cities where machines.id = recycling_records.machine_id and machines.city_id = cities.id and monthname(recycling_records.recycling_date) = '."'$mes_actual'".' group by cities.name');
+            $resumen_usuarios = DB::select('SELECT users.name, SUM(recycling_records.quantity) as cantidad from recycling_records, users where users.id = recycling_records.user_id  and monthname(recycling_records.recycling_date) = '."'$mes_actual'".' group by users.name');
+            $top_five_usuarios_todo_periodo = DB::select('SELECT users.name, SUM(recycling_records.quantity) as cantidad from recycling_records, users where users.id = recycling_records.user_id  group by users.name order by cantidad DESC LIMIT 5');
+            $exchanges = Exchange::where('status', 'Abierto')->orderBy('created_at', 'DESC')->paginate(5);
+            return view('home')->with(compact('resumen_comunas', 'resumen_usuarios', 'top_five_usuarios_todo_periodo', 'exchanges'));   
+        }
     }
 
      public function canjear_eco(Request $request)

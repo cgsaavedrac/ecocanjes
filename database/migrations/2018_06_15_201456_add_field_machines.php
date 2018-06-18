@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddFieldMachineLocation extends Migration
+class AddFieldMachines extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,9 @@ class AddFieldMachineLocation extends Migration
      */
     public function up()
     {
-        Schema::table('machine_locations', function ($table) {
+        Schema::table('machines', function ($table) {
+        $table->string('latitude');
+        $table->string('longitude');
         //FK region_id
         $table->integer('region_id')->unsigned();
         $table->foreign('region_id')->references('id')->on('regions');
@@ -31,12 +33,14 @@ class AddFieldMachineLocation extends Migration
      */
     public function down()
     {
-        Schema::table('machine_locations', function ($table) {
-            $table->dropColumn([
-                'region_id',
-                'city_id',
-                'address'
-            ]);
+        Schema::table('machines', function ($table) {
+        $table->dropColumn([
+            'latitude',
+            'longitude',
+            'region_id',
+            'city_id',
+            'address'
+        ]);
         });
     }
 }

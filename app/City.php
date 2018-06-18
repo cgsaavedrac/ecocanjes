@@ -3,11 +3,20 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use App\MachineLocation;
+use App\Machine;
+use App\Region;
 
 class City extends Model
 {
-    public function machine_locations(){
-    	return $this->hasMany(MachineLocation::class);
+    public function machines(){
+    	return $this->hasMany(Machine::class);
+    }
+
+    public function region(){
+    	return $this->belongsTo(Region::class);
+    }
+
+    public static function cities($id){
+    	return City::where('region_id', '=', $id)->get();
     }
 }
