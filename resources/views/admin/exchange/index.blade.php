@@ -44,9 +44,11 @@
                                     <td class="td-actions text-right">
                                         <form action="{{ url('/admin/exchange/'.$exchange->id.'/change') }}" method="post">
                                             {{ csrf_field() }}
+                                            @if($exchange->status == 'Abierto')
                                             <button type="submit" rel="tooltip" title="Marcar como Procesado" class="btn btn-danger btn-simple btn-xs">
                                                 <i class="fa fa-check"></i>
                                             </button>
+                                            @endif
                                         </form>
                                     </td>
                                 </tr>

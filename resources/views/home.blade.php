@@ -143,7 +143,6 @@
                         <table class="table table-condensed">
                             <thead>
                                 <tr style="color: #00529e;font-weight: 500;">
-                                    <td class="text-center">ID</td>
                                     <td>Movimiento</td>
                                     <td>Monto</td>
                                     <td>Fecha</td>
@@ -152,7 +151,6 @@
                             <tbody>
                                 @foreach ($user_movimientos as $user_movimiento)
                                 <tr>
-                                    <td class="text-center">{{ $user_movimiento->id}}</td>
                                     <td>{{ $user_movimiento->movement_type->name}}</td>
                                     <td>{{ $user_movimiento->mount}}</td>
                                     <td>{{ $user_movimiento->transaction_date}}</td>

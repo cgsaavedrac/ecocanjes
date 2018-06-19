@@ -41,7 +41,14 @@
                     <li><a href="{{ url('/home') }}" style="color:#ffffff">Panel de Control</a></li>
                     <li><a href="{{ url('/admin/user/') }}" style="color:#ffffff">Usuarios</a></li>        
                     <li><a href="{{ url('/admin/machine/') }}" style="color:#ffffff">Maquinas</a></li>
-                    <li><a href="{{ url('admin/exchange') }}" style="color:#ffffff">Canjes</a></li>
+                     <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="background: #4caf50;color: #ffffff">Eco Gestión <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="{{ url('admin/exchange') }}">Canjes</a></li>
+                            <li><a href="{{ url('admin/charge') }}">Agregar Eco Puntos</a></li>
+                        </ul>
+                    </li>
+                    
                     @endif 
                     <li>
                        

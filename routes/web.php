@@ -48,4 +48,10 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
 	Route::get('/exchange', 'ExchangeController@index'); //listado
 	Route::post('/exchange/{id}/change', 'ExchangeController@changeStatus'); //actualizar
 
+	//CARGA DE ECO PUNTOS
+	Route::get('/charge', 'ChargeController@index');
+	Route::get('/charge/{id}/edit', 'ChargeController@edit');
+	Route::post('/charge/{id}/edit', 'ChargeController@update');
+
+
 });

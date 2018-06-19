@@ -34,9 +34,10 @@ class HomeController extends Controller
 
             $user_id = auth()->user()->id;
             $user_balance_entradas = Balance::where('movement_type_id','=','1')->where('user_id', '=', $user_id)->sum('mount');
+            $user_balance_entradas_admin = Balance::where('movement_type_id','=','3')->where('user_id', '=', $user_id)->sum('mount');
             $user_balance_salidas = Balance::where('movement_type_id','=','2')->where('user_id', '=', $user_id)->sum('mount');
-            $cantidad_reciclada = RecyclingRecord::where('user_id', $user_id)->count();
-            $user_movimientos = Balance::where('user_id', $user_id)->paginate(6);
+            $cantidad_reciclada = RecyclingRecord::where('user_id', $user_id)->sum('quantity');
+            $user_movimientos = Balance::where('user_id', $user_id)->paginate(15);
             //33 botellas es un kilo de pet
             //1 botella = 30 gramos
             $kilos_reciclados = (($cantidad_reciclada * 1000) / 33)/100;
@@ -49,7 +50,7 @@ class HomeController extends Controller
             //1 Kg de plástico = 5.0286 Kw de energía ahorrada
             $ahorro_energia_plastico = number_format($kilos_reciclados * 5.0286, 4, ',', '.');
             $ubicacion_maquinas = Machine::where('active', '1')->paginate(6);
-            $user_saldo = $user_balance_entradas - $user_balance_salidas;
+            $user_saldo = ($user_balance_entradas + $user_balance_entradas_admin) - $user_balance_salidas;
             return view('home')->with(compact('user_saldo', 'cantidad_reciclada', 'ahorro_agua_plastico', 'ahorro_bioxido_carbono_plastico', 'ahorro_energia_plastico', 'user_movimientos', 'ubicacion_maquinas'));
         }
     else{
@@ -66,8 +67,9 @@ class HomeController extends Controller
         {
             $user_id = auth()->user()->id;
             $user_balance_entradas = Balance::where('movement_type_id','=','1')->where('user_id', '=', $user_id)->sum('mount');
+            $user_balance_entradas_admin = Balance::where('movement_type_id','=','3')->where('user_id', '=', $user_id)->sum('mount');
             $user_balance_salidas = Balance::where('movement_type_id','=','2')->where('user_id', '=', $user_id)->sum('mount');
-            $user_saldo = $user_balance_entradas - $user_balance_salidas;
+            $user_saldo = ($user_balance_entradas + $user_balance_entradas_admin) - $user_balance_salidas;
 
             //validaciones
             $rules = [
