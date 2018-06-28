@@ -15,7 +15,7 @@
 
             <form method="post" action="" enctype="multipart/form-data">
                 {{csrf_field()}}
-                <input type="file" capture="camera" name="photo" required>
+                <input type="file" name="photo" required>
                 <button type="submit" class="btn btn-primary btn-round">Nueva Imagen</button>
             </form>
             <div class="team">
