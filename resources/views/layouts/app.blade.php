@@ -41,15 +41,32 @@
                     <li><a href="{{ url('/home') }}" style="color:#ffffff">Panel de Control</a></li>
                     <li><a href="{{ url('/admin/user/') }}" style="color:#ffffff">Usuarios</a></li>        
                     <li><a href="{{ url('/admin/machine/') }}" style="color:#ffffff">Maquinas</a></li>
+                    <li><a href="{{ url('/admin/banner/') }}" style="color:#ffffff">Banner</a></li>
                      <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="background: #4caf50;color: #ffffff">Eco Gestión <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <li><a href="{{ url('admin/exchange') }}">Canjes</a></li>
                             <li><a href="{{ url('admin/charge') }}">Agregar Eco Puntos</a></li>
+                            <li><a href="{{ url('admin/ranking') }}">Niveles de Reciclaje</a></li>
+                            <li><a href="{{ url('admin/ranking') }}">Periodo Facturación</a></li>
                         </ul>
                     </li>
                     
-                    @endif 
+                    @endif
+                    @if (auth()->user()->admin == '0') 
+                    <li><a href="{{ url('/userapp/perfil/create') }}" style="color:#ffffff">Perfil</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="background: #4caf50;color: #ffffff">Como funciona <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="{{ url('admin/exchange') }}" style="background: #4caf50;color: #ffffff">Periodos de facturación</a></li>
+                            <li><a href="{{ url('admin/charge') }}" style="background: #4caf50;color: #ffffff">Proceso de canje</a></li>
+                            <li><a href="{{ url('admin/ranking') }}" style="background: #4caf50;color: #ffffff">Tabla conversiones</a></li>
+                            <li><a href="{{ url('admin/ranking') }}" style="background: #4caf50;color: #ffffff">Máquinas</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="{{ url('/home') }}" style="color:#ffffff">Contacto</a></li>
+                    <li><a href="{{ url('/home') }}" style="color:#ffffff">Historial</a></li>
+                    @endif
                     <li>
                        
                         <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" style="color:#ffffff">
@@ -78,6 +95,30 @@
     <!-- Control Center for Material Kit: activating the ripples, parallax effects, scripts from the example pages etc -->
     <script src="{{ asset('js/dropdown.js') }}" type="text/javascript"></script>
     <script src="{{ asset('js/material-kit.js') }}" type="text/javascript"></script>
+    <script type="text/javascript" src="{{ asset('js/jquery-1.11.1.min.js') }}"></script>
+    <script src="{{ asset('js/responsiveslides.min.js') }}"></script>
+
+    <script>
+
+        $(function () {
+
+          $("#slider").responsiveSlides({
+
+            auto: true,
+
+            nav: true,
+
+            speed: 500,
+
+            namespace: "callbacks",
+
+            pager: true,
+
+          });
+
+        });
+
+    </script>
     
 </body>
 </html>

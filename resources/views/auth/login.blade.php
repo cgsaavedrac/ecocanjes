@@ -27,41 +27,31 @@
                                 <span class="input-group-addon">
                                     <i class="material-icons">email</i>
                                 </span>
-                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" placeholder="Email..." required autofocus>
+                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" placeholder="Correo Eléctronico" required autofocus>
                             </div>
 
                             <div class="input-group">
                                 <span class="input-group-addon">
                                     <i class="material-icons">lock_outline</i>
                                 </span>
-                                <input id="password" type="password" class="form-control" name="password" required />
+                                <input id="password" type="password" class="form-control" name="password" placeholder="Clave" required />
                             </div>
 
                             <!-- If you want to add a checkbox to this form, uncomment this code-->
-
-                            <div class="checkbox">
-                                <label>
-                                    <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}>
-                                    Recordar
-                                </label>
+                            <div class="footer text-right">
+                                <button type="submit" class="btn btn-success btn-round"><i class="material-icons">fingerprint</i> Ingresar</button>
                             </div>
-                            <div class="text-left">
+                            <div class="text-center">
                                 <a href="{{ route('password.request') }}" style="color:#000">
-                                   ¿Olvidaste tu contraseña?
+                                   Recordar clave
                                 </a>
                             </div>
+                            <div class="text-center">
+                                <a href="{{ route('register') }}" style="color:#000;padding-bottom: 15px">
+                               Registrar usuario nuevo</a>
+                            </div> 
                         </div>
-                        <div class="footer text-center">
-                            <button type="submit" class="btn btn-success btn-round"><i class="material-icons">fingerprint</i> Ingresar</button>
-                        </div>
-                        <div class="text-center">
-                            ¿Aún no tienes cuenta?
-                        </div>
-                        <div class="footer text-center">
-                            <a class="btn btn-success btn-round" href="{{ route('register') }}">
-                               <i class="material-icons">person</i> Registrate
-                            </a>
-                        </div>    
+                           
                     </form>
                 </div>
             </div>

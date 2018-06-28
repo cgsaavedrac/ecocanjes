@@ -1,0 +1,57 @@
+<style>
+.footer{
+    position: fixed;
+    width: 100%;
+    height: 60px;
+    bottom: 0;
+    z-index: 100;/* Depende el valor segun las capas flotantes que tengas */
+    left: 0; /* Depende el Ancho de donde se va a colocar */
+} 
+
+.footer2{
+    position: fixed;
+    width: 100%;
+    height: 20%;
+    bottom: 60px;
+    z-index: 100;/* Depende el valor segun las capas flotantes que tengas */
+    left: 0; /* Depende el Ancho de donde se va a colocar */
+} 
+
+#main2 {
+    width: 100%;
+    height: 60px;
+    border: 1px solid #c3c3c3;
+    display: -webkit-flex; /* Safari */
+    -webkit-flex-direction: row-reverse; /* Safari 6.1+ */
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+#main2 div {
+    width: 100%;
+    height: 60px;
+}
+
+</style>
+<div class="footer2" style="margin-bottom: 0px;background-color: #4caf50;color: #ffffff !important">
+  <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+    <div class="carousel-inner" role="listbox">
+      <div class="item active">
+        <img src="" class="img-responsive">
+      </div>
+      @foreach ($banners as $banner)
+        <div class="item">
+          <img src="" class="img-responsive">
+        </div>
+      @endforeach
+    </div>
+  </div>
+</div>
+<div class="footer" style="margin-bottom: 0px;background-color: #4caf50;color: #ffffff !important">
+  <div id="main2">
+    <div class="text-center"><i class="material-icons">group</i><br>Comunidad</div>
+    <div class="text-center"><i class="material-icons">cached</i><br>Beneficios</div>
+    <div class="text-center"><i class="material-icons">mood</i><br>Mi actividad</div>
+    <div class="text-center"><i class="material-icons">place</i><br>Donde Reciclar</div>
+  </div>
+</div>

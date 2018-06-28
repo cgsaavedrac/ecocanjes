@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+Use App\Region;
+Use App\City;
 
 class UserController extends Controller
 {
@@ -16,6 +18,21 @@ class UserController extends Controller
     {
         $users = User::where('active', 1)->orderBy('id', 'DESC')->paginate(10);
         return view('admin.user.index')->with(compact('users'));
+    }
+
+    public function getPerfil(){
+        $regions = Region::where('active', '1')->orderBy('name')->get();
+        $regions_combo = Region::pluck('name', 'id');
+
+        $id = auth()->user()->id;
+        $user = User::find($id);
+        return view('userapp.perfil.create')->with(compact('user', 'regions', 'regions_combo'));
+    }
+    public function getCity(Request $request, $id){
+        if ($request->ajax()){
+            $cities = City::cities($id);
+            return response()->json($cities);
+        }
     }
 
     /**

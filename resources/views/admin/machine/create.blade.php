@@ -66,6 +66,29 @@
                             <input type="text" class="form-control" name="longitude" value="{{ old('longitude') }}" required>
                         </div>
                     </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group label-floating">
+                            <label class="control-label">Días de Atención</label>
+                            <select name="days_attention" id="days_attention" class="form-control">
+                                <option value="Lunes a Viernes">Lunes a Viernes</option>
+                                <option value="Lunes a Sabado">Lunes a Sabado</option>
+                                <option value="Todos los días">Todos los días</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group label-floating">
+                            <label class="control-label">Horas de Atención</label>
+                            <select name="hours_attention" id="hours_attention" class="form-control">
+                                <option value="8:00 - 18:00">8:00 - 18:00</option>
+                                <option value="9:00 - 19:00">9:00 - 19:00</option>
+                                <option value="11:00 - 21:00">11:00 - 21:00</option>
+                                <option value="24 horas">24 horas</option>
+                            </select>
+                        </div>
+                    </div>
                 </div>                 
                 <button class="btn btn-primary">Guardar Maquina</button>
                 <a href="{{ url('/admin/machine') }}" class="btn btn-default">Cancelar</a>

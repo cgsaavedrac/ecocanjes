@@ -49,6 +49,13 @@
                                 @endif
                             </div>
 
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <i class="material-icons">mail</i>
+                                </span>
+                                <input id="email-confirm" type="email" class="form-control" placeholder="Repita su correo" name="email_confirmation" required>
+                            </div>
+
                             <div class="input-group{{ $errors->has('password') ? ' has-error' : '' }}">
                                 <span class="input-group-addon">
                                     <i class="material-icons">lock_outline</i>
@@ -67,6 +74,11 @@
                                     <i class="material-icons">lock_outline</i>
                                 </span>
                                 <input id="password-confirm" type="password" class="form-control" placeholder="Repita su contraseña" name="password_confirmation" required>
+                            </div>
+
+                            <div class="input-group">
+                                <input type="checkbox" name="ter" required="" class="checkbox">
+                                    Acepta Términos y condiciones de usos y politícas de privacidad.
                             </div>
 
                             <div class="form-group text-center">

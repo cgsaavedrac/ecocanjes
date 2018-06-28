@@ -25,6 +25,8 @@
                                     <td>Región</td>
                                     <td>Comuna</td>
                                     <td>Dirección</td>
+                                    <td>Días de atención</td>
+                                    <td>Horas de atención</td>
                                     <td class="td-actions text-right">Opciones</td>
                                 </tr>
                             </thead>
@@ -36,6 +38,8 @@
                                     <td>{{ $machine->region->name }}</td>
                                     <td>{{ $machine->city->name}}</td>
                                     <td>{{ $machine->address}}</td>
+                                    <td>{{ $machine->days_attention}}</td>
+                                    <td>{{ $machine->hours_attention}}</td>
                                     <td class="td-actions text-right">
                                         <form action="{{ url('/admin/machine/'.$machine->id.'/delete') }}" method="post">
                                             {{ csrf_field() }}

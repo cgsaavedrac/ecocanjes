@@ -57,6 +57,8 @@ class MachineController extends Controller
             'address' => 'required|min:3',
             'latitude' => 'required|numeric',
             'longitude' => 'required|numeric',
+            'days_attention' => 'required',
+            'hours_attention' => 'required',
             'terminal_number' => 'unique:machines,terminal_number'
         ];
         $message = [
@@ -70,7 +72,9 @@ class MachineController extends Controller
             'latitude.required' => 'Indique la Latitud',
             'latitude.numeric' => 'La latitud sólo acepta números',
             'longitude.required' => 'Indique la Longitud',
-            'longitude.numeric' => 'La longitud sólo acepta números'
+            'longitude.numeric' => 'La longitud sólo acepta números',
+            'days_attention.required' => 'Indique los días de atentión',
+            'hours_attention.required' => 'Indique las horas de atención'
         ];      
 
         $this->validate($request, $rules, $message);
@@ -82,6 +86,8 @@ class MachineController extends Controller
         $machine->address = $request->input('address');
         $machine->region_id = $request->input('region');
         $machine->city_id = $request->input('city');
+        $machine->days_attention = $request->input('days_attention');
+        $machine->hours_attention = $request->input('hours_attention');
         $machine->save();
         return redirect('admin/machine');
     }
