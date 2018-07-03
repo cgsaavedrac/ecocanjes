@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "ba47bb413ac61761debb127324da2df7",
+    "content-hash": "8ae90900d7c00304d957cff4effeaa91",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -668,6 +668,62 @@
                 "trusted proxy"
             ],
             "time": "2017-06-15T17:19:42+00:00"
+        },
+        {
+            "name": "fomvasss/laravel-punycode",
+            "version": "1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/fomvasss/laravel-punycode.git",
+                "reference": "9c9a62c370ff0cb5aee54a68bd0c9cecfc6036dc"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/fomvasss/laravel-punycode/zipball/9c9a62c370ff0cb5aee54a68bd0c9cecfc6036dc",
+                "reference": "9c9a62c370ff0cb5aee54a68bd0c9cecfc6036dc",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "5.4.*|5.5.*|5.6.*",
+                "php": ">=5.5.9"
+            },
+            "type": "package",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Fomvasss\\Punycode\\PunycodeServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Fomvasss\\Punycode\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "WebWest",
+                    "homepage": "http://web-west.net.ua",
+                    "role": "Company"
+                },
+                {
+                    "name": "Fomin Vasyl",
+                    "email": "fomvasss@gmail.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Package for encoding of Unicode for Internationalized Domain Names in Applications (IDNA)",
+            "keywords": [
+                "domain",
+                "idn",
+                "laravel",
+                "punycode"
+            ],
+            "time": "2018-06-13T20:03:05+00:00"
         },
         {
             "name": "greggilbert/recaptcha",

@@ -6,12 +6,13 @@
     "type": "project",
     "require": {
         "php": ">=7.0.0",
+        "doctrine/dbal": "2.5.1",
         "fideloper/proxy": "~3.3",
+        "fomvasss/laravel-punycode": "^1.1",
+        "greggilbert/recaptcha": "dev-master",
         "laravel/framework": "5.5.*",
         "laravel/tinker": "~1.0",
-        "doctrine/dbal": "2.5.1",
-        "laravelcollective/html":"^5.4.0",
-        "greggilbert/recaptcha": "dev-master"
+        "laravelcollective/html": "^5.4.0"
     },
     "require-dev": {
         "filp/whoops": "~2.0",
