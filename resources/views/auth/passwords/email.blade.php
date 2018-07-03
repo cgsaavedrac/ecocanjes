@@ -28,6 +28,11 @@
                             <button type="submit" class="btn btn-success">
                                 Enviar link para reseteo de contraseña
                             </button>
+                            <div class="text-center btn btn-success">
+                                <a href="{{ url('/') }}" style="color:#fff">
+                                   Iniciar Sesión
+                                </a>
+                            </div>
                         </div>
                     </form>
                 </div>
