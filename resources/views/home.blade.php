@@ -182,11 +182,11 @@ function initMap(){
   <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
     <div class="carousel-inner" role="listbox">
       <div class="item active">
-        <img src="{{ $banner->url }}" class="img-responsive">
+        <img src="{{ $banner ? $banner->url : ''  }}" class="img-responsive">
       </div>
       @foreach ($banners as $banner)
         <div class="item">
-          <img src="{{ $banner->url }}" class="img-responsive">
+          <img src="{{ $banner ? $banner->url : ''  }}" class="img-responsive">
         </div>
       @endforeach
     </div>

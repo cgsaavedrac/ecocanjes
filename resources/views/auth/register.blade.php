@@ -77,6 +77,10 @@
                             </div>
 
                             <div class="input-group">
+                                {!! Recaptcha::render() !!}
+                            </div>
+
+                            <div class="input-group">
                                 <input type="checkbox" name="ter" required="" class="checkbox">
                                     Acepta Términos y condiciones de usos y politícas de privacidad.
                             </div>

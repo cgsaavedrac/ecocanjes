@@ -19,6 +19,7 @@
 
         <div class="section">
             <h2 class="title text-center">Perfil de Usuario</h2>
+            <h6 class="title text-center">Recuerde que para poder canjear debe tener su perfil actualizado</h6>
             @if ($errors->any())
                 <div class="alert alert-danger">
                     <ul>
@@ -28,24 +29,20 @@
                     </ul>
                 </div>
             @endif        
-            <form action="{{ url('/admin/machine') }}" method="post">
+            <form action="{{ url('/userapp/perfil/'.$user->id.'/msn') }}" method="post">
                 {{ csrf_field() }}
                 <div class="row">
                     <div class="col-sm-6">
-                        <div class="form-group label-floating">Nombre Completo
-                            <input type="text" class="form-control" name="name" value="{{ old('name', $user->name) }}" required>
-                        </div>
+                        <div class="form-group label-floating">Nombre Completo: {{ $user->name }}</div>
                     </div>
                     <div class="col-sm-6">
-                        <div class="form-group label-floating">Correo
-                            <input type="text" class="form-control" name="email" value="{{ old('email', $user->email) }}" required>
-                        </div>
+                        <div class="form-group label-floating">Correo: {{ $user->email }}</div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-sm-6">
                         <div class="form-group label-floating">Fecha nacimiento
-                            <input class="datepicker form-control" type="date" placeholder="Fecha posible de cierre" name="closing_date" />
+                            <input class="datepicker form-control" type="date" name="birth_date" />
                         </div>
                  
                     </div>
@@ -71,8 +68,8 @@
                         </div>
                     </div>
                 </div>                 
-                <button class="btn btn-primary">Guardar Maquina</button>
-                <a href="{{ url('/admin/machine') }}" class="btn btn-default">Cancelar</a>
+                <button class="btn btn-primary">Actualizar Perfil</button>
+                <a href="{{ url('/home') }}" class="btn btn-default">Cancelar</a>
                 
             </form>
         </div>

@@ -35,6 +35,33 @@ class UserController extends Controller
         }
     }
 
+    public function actPerfil(Request $request)
+    {      
+        
+        //validaciones
+        $rules = [
+            'birth_date' => 'required',
+            'region2' => 'required',
+            'city2' => 'required',
+        ];
+        $message = [
+            'birth_date.required' => 'Indique su fecha de nacimiento',
+            'region2.required' => 'Indique su región.',
+            'city2.required' => 'Indique su comuna',
+        ];      
+
+        $this->validate($request, $rules, $message);
+
+        $id = auth()->user()->id;
+        $user = User::find($id);
+        $user->birth_date = $request->input('birth_date');
+        $user->sexo = $request->input('sexo');
+        $user->region_id = $request->input('region2');
+        $user->city_id = $request->input('city2');
+        $user->save();
+        return view('userapp/perfil/msn');
+    }
+
     /**
      * Show the form for creating a new resource.
      *

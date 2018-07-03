@@ -26,9 +26,9 @@
 </style>
 <div class="footer" style="margin-bottom: 0px;background-color: #4caf50;color: #ffffff !important">
   <div id="main2">
-    <div class="text-center"><i class="material-icons">group</i><br>Comunidad</div>
-    <div class="text-center"><i class="material-icons">cached</i><br>Beneficios</div>
-    <div class="text-center"><i class="material-icons">mood</i><br>Mi actividad</div>
-    <div class="text-center"><i class="material-icons">place</i><br>Donde Reciclar</div>
+    <div class="text-center"><a href="{{ url('/userapp/comunidad') }}" style="color:#fff"><i class="material-icons">group</i><br>Comunidad</a></div>
+    <div class="text-center"><a href="{{ url('/userapp/canjes') }}" style="color:#fff"><i class="material-icons">cached</i><br>Beneficios</a></div>
+    <div class="text-center"><a href="{{ url('/userapp/actividad') }}" style="color:#fff"><i class="material-icons">mood</i><br>Mi actividad</a></div>
+    <div class="text-center"><a href="{{ url('/home') }}" style="color:#fff"><i class="material-icons">place</i><br>Donde Reciclar</a></div>
   </div>
 </div>

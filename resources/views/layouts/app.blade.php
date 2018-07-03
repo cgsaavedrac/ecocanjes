@@ -42,7 +42,13 @@
                     <li><a href="{{ url('/admin/user/') }}" style="color:#ffffff">Usuarios</a></li>        
                     <li><a href="{{ url('/admin/machine/') }}" style="color:#ffffff">Maquinas</a></li>
                     <li><a href="{{ url('/admin/banner/') }}" style="color:#ffffff">Banner</a></li>
-                     <li class="dropdown">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="background: #4caf50;color: #ffffff">Parametros <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="{{ url('admin/grantee') }}">Donatario</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="background: #4caf50;color: #ffffff">Eco Gestión <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <li><a href="{{ url('admin/exchange') }}">Canjes</a></li>
@@ -64,8 +70,8 @@
                             <li><a href="{{ url('admin/ranking') }}" style="background: #4caf50;color: #ffffff">Máquinas</a></li>
                         </ul>
                     </li>
-                    <li><a href="{{ url('/home') }}" style="color:#ffffff">Contacto</a></li>
-                    <li><a href="{{ url('/home') }}" style="color:#ffffff">Historial</a></li>
+                    <li><a href="{{ url('/userapp/contacto') }}" style="color:#ffffff">Contacto</a></li>
+                    <li><a href="{{ url('/userapp/historial') }}" style="color:#ffffff">Historial</a></li>
                     @endif
                     <li>
                        

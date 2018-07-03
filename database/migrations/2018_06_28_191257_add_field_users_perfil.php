@@ -13,7 +13,16 @@ class AddFieldUsersPerfil extends Migration
      */
     public function up()
     {
-        //
+        Schema::table('users', function ($table) {
+        $table->date('birth_date')->nullable();
+        $table->string('sexo')->nullable();
+        //FK region_id
+        $table->integer('region_id')->unsigned()->nullable();
+        $table->foreign('region_id')->references('id')->on('regions');
+        //FK city_id
+        $table->integer('city_id')->unsigned()->nullable();
+        $table->foreign('city_id')->references('id')->on('cities');
+        });
     }
 
     /**
@@ -23,6 +32,13 @@ class AddFieldUsersPerfil extends Migration
      */
     public function down()
     {
-        //
+        Schema::table('users', function ($table) {
+        $table->dropColumn([
+            'birth_date',
+            'sexo',
+            'region_id',
+            'city_id',
+        ]);
+        });
     }
 }

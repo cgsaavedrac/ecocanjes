@@ -43,7 +43,7 @@ class HomeController extends Controller
             $user_movimientos = Balance::where('user_id', $user_id)->paginate(15);
             //33 botellas es un kilo de pet
             //1 botella = 30 gramos
-            $kilos_reciclados = (($cantidad_reciclada * 1000) / 33)/100;
+            $kilos_reciclados = (($cantidad_reciclada * 1000) / 33)/1000;
             //EQUIVALENCIAS PLASTICOS
 
             //1 Kg de plástico ahorra 39.26 Lts de agua

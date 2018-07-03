@@ -34,6 +34,13 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::post('/home', 'HomeController@canjear_eco');
 Route::get('/userapp/perfil/create', 'UserController@getPerfil');
 Route::get('/userapp/perfil/cities/{id}', 'UserController@getCity');
+Route::post('/userapp/perfil/{id}/msn', 'UserController@actPerfil');
+Route::get('/userapp/contacto', 'ContactController@index');
+Route::post('/userapp/contacto/create', 'ContactController@contactmail');
+Route::get('/userapp/actividad', 'MyActivitieController@index');
+Route::get('/userapp/comunidad', 'CommunityController@index');
+Route::get('/userapp/historial', 'HistoryController@index');
+Route::get('/userapp/canjes', 'CanjesController@index');
 
 Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
 
@@ -86,6 +93,14 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
 	Route::get('/banner', 'BannerController@index'); //listado
 	Route::post('/banner', 'BannerController@store'); //guardar
 	Route::post('/banner/{id}/delete', 'BannerController@destroy');
+
+	//CRUD DONATARIOS
+	Route::get('/grantee', 'GranteeController@index'); //listado
+	Route::get('/grantee/create', 'GranteeController@create'); //formulario crear
+	Route::post('/grantee', 'GranteeController@store'); //guardar
+	Route::get('/grantee/{id}/edit', 'GranteeController@edit'); //formulario edición
+	Route::post('/grantee/{id}/edit', 'GranteeController@update'); //actualizar
+	Route::post('/grantee/{id}/delete', 'GranteeController@destroy');
 
 
 });
