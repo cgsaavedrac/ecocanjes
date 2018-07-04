@@ -23,6 +23,9 @@
                                     <th class="text-center">ID</th>
                                     <th class="col-md-2 text-center">Nombre</th>
                                     <th class="col-md-2 text-center">Correo</th>
+                                    <th class="col-md-2 text-center">Fecha nacimiento</th>
+                                    <th class="col-md-2 text-center">Región</th>
+                                    <th class="col-md-2 text-center">Comuna</th>
                                     <th class="col-md-2 text-center">Fecha Registro</th>
                                     <th class="col-md-2 text-center">Tipo de Usuario</th>
                                     <th class="td-actions text-right">Opciones</th>
@@ -34,6 +37,9 @@
                                     <td class="text-center">{{ $user->id}}</td>
                                     <td>{{ $user->name}}</td>
                                     <td>{{ $user->email}}</td>
+                                    <td>{{ $user->birth_date ? $user->birth_date : 'Sin dato' }}</td>
+                                    <td>{{ $user->region ? $user->region->name : 'Sin dato'}}</td>
+                                    <td>{{ $user->city ? $user->city->name : 'Sin dato'}}</td>
                                     <td>{{ $user->created_at}}</td>
                                     @if ($user->admin == 1)
                                     <td>Administrador</td>
