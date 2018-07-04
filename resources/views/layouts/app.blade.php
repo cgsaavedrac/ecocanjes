@@ -46,6 +46,7 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="background: #4caf50;color: #ffffff">Parametros <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <li><a href="{{ url('admin/grantee') }}">Donatario</a></li>
+                            <li><a href="{{ url('admin/equivalence') }}">Equivalencias</a></li>
                         </ul>
                     </li>
                     <li class="dropdown">

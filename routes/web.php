@@ -15,6 +15,7 @@ Route::get('/', function () {
     return view('auth/login');
 });
 
+
 Route::get('sendmail', function() {
 	$data = array(
 		'name' => 'Prueba de Correo',
@@ -101,6 +102,12 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
 	Route::get('/grantee/{id}/edit', 'GranteeController@edit'); //formulario edición
 	Route::post('/grantee/{id}/edit', 'GranteeController@update'); //actualizar
 	Route::post('/grantee/{id}/delete', 'GranteeController@destroy');
+
+	//CRUD EQUIVALENCIAS
+	Route::get('/equivalence', 'EquivalenceController@index'); //listado
+	Route::get('/equivalence/{id}/edit', 'EquivalenceController@edit'); //formulario edición
+	Route::post('/equivalence/{id}/edit', 'EquivalenceController@update'); //actualizar
+	Route::post('/equivalence/{id}/delete', 'EquivalenceController@destroy');
 
 
 });

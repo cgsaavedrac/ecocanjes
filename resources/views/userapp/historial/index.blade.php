@@ -32,7 +32,7 @@
                         @foreach ($user_movimientos as $user_movimiento)
                         <tr>
                             <td>{{ $user_movimiento->movement_type->name}}</td>
-                            <td>{{ $user_movimiento->mount}}</td>
+                            <td>{{ $user_movimiento->mount}} ECO</td>
                             <td>{{ $user_movimiento->transaction_date}}</td>
                         </tr>
                         @endforeach
