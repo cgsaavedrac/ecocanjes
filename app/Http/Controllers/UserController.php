@@ -16,7 +16,12 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::where('active', 1)->orderBy('id', 'DESC')->paginate(10);
+        if(auth()->user()->rol == 'sadmin'){
+            $users = User::where('active', 1)->orderBy('id', 'DESC')->paginate(10);  
+        }else{
+            $users = User::where('active', 1)->where('admin', '0')->orderBy('id', 'DESC')->paginate(10);    
+        }
+        //$users = User::where('active', 1)->orderBy('id', 'DESC')->paginate(10);
         return view('admin.user.index')->with(compact('users'));
     }
 
@@ -221,9 +226,14 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($id){       
+        //dd($id);
         $user = User::find($id);
         $user->active = false;
         $user->save();
         return back();
+    }
+
+    public function redirect_reset_pass(){
+        return view('admin.user.msn');
     }  
 }

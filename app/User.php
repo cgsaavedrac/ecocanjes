@@ -8,8 +8,10 @@ use App\Notifications\ResetPasswordNotification;
 use App\Balance;
 use App\RecyclingRecord;
 use App\Exchange;
+use App\exchange_grantees;
 use App\Region;
 use App\City;
+use App\Sale;
 
 class User extends Authenticatable
 {
@@ -43,6 +45,14 @@ class User extends Authenticatable
 
     public function exchanges(){
         return $this->hasMany(Exchange::class);
+    }
+
+    public function exchange_grantees(){
+        return $this->hasMany(exchange_grantees::class);
+    }
+
+    public function sales(){
+        return $this->hasMany(Sale::class);
     }
 
     public function region(){

@@ -27,10 +27,9 @@
                             <div class="panel panel-default">
                                 <div class="panel-body">
                                     <img src="{{ $banner->url }}" alt="" class="img-responsive">
-                                    <form action="{{ url('/admin/banner/'.$banner->id.'/delete') }}" method="post">
-                                            {{ csrf_field() }}
-                                            <button type="submit" rel="tooltip" title="Eliminar" class="btn btn-danger btn-round">Eliminar Imagen</button>
-                                        </form>
+                                    
+                                        <a href="{{ url('/admin/banner/'.$banner->id.'/delete') }}" onclick="return confirm('¿Esta seguro de eliminar este registro?')" rel="tooltip" title="Eliminar" class="btn btn-danger btn-round">Eliminar Imagen</a>
+                                
                                 </div>
                             </div>
                         </div>
@@ -44,6 +43,5 @@
     </div>
 
 </div>
-
 @include('includes.footer')
 @endsection

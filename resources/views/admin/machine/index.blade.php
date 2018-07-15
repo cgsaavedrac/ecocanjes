@@ -41,12 +41,9 @@
                                     <td>{{ $machine->days_attention}}</td>
                                     <td>{{ $machine->hours_attention}}</td>
                                     <td class="td-actions text-right">
-                                        <form action="{{ url('/admin/machine/'.$machine->id.'/delete') }}" method="post">
-                                            {{ csrf_field() }}
-                                            <button type="submit" rel="tooltip" title="Eliminar Maquina" class="btn btn-danger btn-simple btn-xs">
-                                                <i class="fa fa-times"></i>
-                                            </button>
-                                        </form>
+                                        <a href="{{ url('/admin/machine/'.$machine->id.'/delete') }}" onclick="return confirm('¿Esta seguro de eliminar este registro?')" rel="tooltip" title="Eliminar Maquina" class="btn btn-danger btn-simple btn-xs">
+                                        <i class="fa fa-times"></i>
+                                        </a>  
                                     </td>
                                 </tr>
                                 @endforeach
@@ -62,6 +59,5 @@
     </div>
 
 </div>
-
 @include('includes.footer')
 @endsection

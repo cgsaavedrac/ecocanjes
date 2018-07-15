@@ -42,6 +42,7 @@
                     </div>
                     <div class="col-xs-6 text-center">
                         <i class="material-icons" style="font-size:48px;color: #4caf50">lightbulb_outline</i><br><h4>{{ $ahorro_energia_plastico + $ahorro_energia_aluminio }}kw<br>Energía ahorrada</h4>
+                        <i class="material-icons" style="font-size:48px;color: #4caf50">delete</i><br><h4>{{ $basura_ahorrada }}kg<br>Basura ahorrada</h4>
                     </div>
                 </div>
         </div>

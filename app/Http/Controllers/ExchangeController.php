@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Exchange;
+use App\exchange_grantees;
 
 class ExchangeController extends Controller
 {
@@ -16,6 +17,12 @@ class ExchangeController extends Controller
     {
         $exchanges = Exchange::orderBy('created_at', 'DESC')->paginate(10);
         return view('admin.exchange.index')->with(compact('exchanges'));
+    }
+
+    public function donaciones()
+    {
+        $exchanges = exchange_grantees::orderBy('created_at', 'DESC')->paginate(10);
+        return view('admin.exchange.donaciones')->with(compact('exchanges'));
     }
 
     /**
@@ -75,6 +82,13 @@ class ExchangeController extends Controller
 
     public function changeStatus($id){
         $exchange = Exchange::find($id);
+        $exchange->status = 'Procesado';
+        $exchange->save();
+        return back();
+    }
+
+    public function changeStatusGrantee($id){
+        $exchange = exchange_grantees::find($id);
         $exchange->status = 'Procesado';
         $exchange->save();
         return back();

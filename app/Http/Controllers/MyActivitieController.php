@@ -29,6 +29,8 @@ class MyActivitieController extends Controller
 
 
         $kilos_reciclados_pet = $cantidad_reciclada_pet / 33;
+
+        $basura_ahorrada = number_format($kilos_reciclados_pet + $kilos_reciclados_lat, 0, ',', '.');
         
         //EQUIVALENCIAS PLASTICOS
 
@@ -39,7 +41,7 @@ class MyActivitieController extends Controller
         //1 Kg de plástico = 5.0286 Kw de energía ahorrada
         $ahorro_energia_plastico = number_format($kilos_reciclados_pet * 5.0286, 0, ',', '.');
         
-        return view('userapp.actividad.index')->with(compact('cantidad_reciclada_pet', 'cantidad_reciclada_lat', 'ahorro_agua_plastico', 'ahorro_bioxido_carbono_plastico', 'ahorro_energia_plastico', 'kilos_reciclados_pet', 'kilos_reciclados_lat', 'ahorro_agua_aluminio', 'ahorro_bioxido_carbono_aluminio', 'ahorro_energia_aluminio'));
+        return view('userapp.actividad.index')->with(compact('cantidad_reciclada_pet', 'cantidad_reciclada_lat', 'ahorro_agua_plastico', 'ahorro_bioxido_carbono_plastico', 'ahorro_energia_plastico', 'kilos_reciclados_pet', 'kilos_reciclados_lat', 'ahorro_agua_aluminio', 'ahorro_bioxido_carbono_aluminio', 'ahorro_energia_aluminio', 'basura_ahorrada'));
     }    
         
 }

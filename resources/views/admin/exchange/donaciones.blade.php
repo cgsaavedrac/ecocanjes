@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Cargas BIP')
+@section('title', 'Donaciones')
 @section('body-class', 'product-page')
 
 @section('content')
@@ -11,7 +11,7 @@
     <div class="container">
 
         <div class="section text-center">
-            <h2 class="title" style="color: #00529e">Solicitudes de Carga BIP</h2>
+            <h2 class="title" style="color: #00529e">Donaciones</h2>
 
             <div class="team">
                 <div class="row">
@@ -22,8 +22,8 @@
                                     <td class="text-center">ID</td>
                                     <td>Nombre de Usuario</td>
                                     <td>Correo</td>
-                                    <td>Número BIP</td>
-                                    <td>Eco Puntos a Canjear</td>
+                                    <td>Fundación</td>
+                                    <td>Eco Puntos donados</td>
                                     <td>Pesos Chilenos</td>
                                     <td>Fecha</td>
                                     <td>Estado Solicitud</td>
@@ -36,14 +36,14 @@
                                     <td class="text-center">{{ $exchange->id}}</td>
                                     <td>{{ $exchange->user->name}}</td>
                                     <td>{{ $exchange->user->email }}</td>
-                                    <td>{{ $exchange->number_bip}}</td>
+                                    <td>{{ $exchange->grantee->name}}</td>
                                     <td>{{ $exchange->quantity_eco}}</td>
                                     <td>{{ $exchange->clp}}</td>
                                     <td>{{ $exchange->transaction_date}}</td>
                                     <td>{{ $exchange->status}}</td>
                                     <td class="td-actions text-right">
                                         @if($exchange->status == 'Abierto')
-                                            <a href="{{ url('/admin/exchange/'.$exchange->id.'/change') }}" onclick="return confirm('¿Esta seguro de procesar este registro?')" rel="tooltip" title="Marcar como procesado" class="btn btn-danger btn-simple btn-xs">
+                                            <a href="{{ url('/admin/exchange/'.$exchange->id.'/change_grantee') }}" onclick="return confirm('¿Esta seguro de procesar este registro?')" rel="tooltip" title="Marcar como procesado" class="btn btn-danger btn-simple btn-xs">
                                             <i class="fa fa-check"></i>
                                             </a>
                                         @endif
@@ -62,5 +62,6 @@
     </div>
 
 </div>
+
 @include('includes.footer')
 @endsection

@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Mi Actividad')
+@section('title', 'Beneficios')
 @section('body-class', 'product-page')
 
 @section('content')
@@ -18,8 +18,8 @@
 <div class="map-responsive">
     <div class="container">
         <div class="section">
-            <h2 class="title text-center">Mi Saldo<br>{{ $user_saldo }} Ecopesos</h2>       
-            <h5 class="title text-center" style="color:red">DISPONIBLE PARA CANJE</h5>
+            <h2 class="title text-center">Mi Saldo<br>{{ $total_nc }} Ecopesos</h2>       
+            <h5 class="title text-center" style="color:red">DISPONIBLE PARA CANJE {{ $total_saldo_contable }}</h5>
                 @if ($errors->any())
                   <div class="alert alert-danger">
                     <ul>
@@ -28,9 +28,13 @@
                       @endforeach
                     </ul>
                   </div>
-                @endif        
-                  <form action="{{ url('/home') }}" method="post">
-                    {{ csrf_field() }}
+                @endif 
+                @if (session('mensaje'))
+                  <div class="alert alert-danger">
+                      {{ session('mensaje') }}
+                  </div>
+                @endif       
+                  
                     <div class="row">
                       <div class="col-sm-12">
                         <div class="form-group label-floating">
@@ -43,48 +47,53 @@
                         </div>
                       </div>
                     </div>
-                    <div class="container" id="bip" style="display:none">
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <div class="form-group label-floating">
-                                    <label class="control-label">Número tarjeta Bip</label>
-                                     <input type="text" class="form-control" name="number_bip" value="{{ old('number_bip') }}">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <div class="form-group label-floating">
-                                  <label class="control-label">Cantidad de Eco a canjear</label>
-                                  <input type="number" class="form-control" name="quantity_eco" value="{{ old('quantity_eco') }}">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="container" id="donatario" style="display:none">
-                        <div class="row">  
-                            <div class="col-sm-6">
-                                <label class="control-label">Seleccione Donatario</label>
-                                <select name="company_id" class="form-control">
-                                    <option value="0"></option>
-                                    @foreach ($grantees as $grantee)
-                                        <option value="{{ $grantee->id }}">{{ $grantee->name }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <div class="form-group label-floating">
-                                  <label class="control-label">Cantidad de Eco a canjear</label>
-                                  <input type="number" class="form-control" name="quantity_eco" value="{{ old('quantity_eco') }}">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <button class="btn btn-success">Canjear</button>
-                  </form>
+                    <form action="{{ url('/userapp/canjes/confirmed') }}" method="post">
+                    {{ csrf_field() }}
+                      <div class="container" id="bip" style="display:none">
+                          <div class="row">
+                              <div class="col-sm-6">
+                                  <div class="form-group label-floating">
+                                      <label class="control-label">Número tarjeta Bip</label>
+                                       <input type="number" class="form-control" name="number_bip" value="{{ old('number_bip') }}" required>
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="row">
+                              <div class="col-sm-6">
+                                  <div class="form-group label-floating">
+                                    <label class="control-label">Cantidad de Eco a canjear</label>
+                                    <input type="number" max="{{ $total_saldo_contable }}" class="form-control" name="quantity_eco" value="{{ old('quantity_eco') }}" required>
+                                  </div>
+                              </div>
+                          </div>
+                          <button class="btn btn-success">Canjear</button>
+                      </div>
+                    </form>  
+                    <form action="{{ url('/userapp/canjes/confirmed') }}" method="post">
+                    {{ csrf_field() }}
+                      <div class="container" id="donatario" style="display:none">
+                          <div class="row">  
+                              <div class="col-sm-6">
+                                  <label class="control-label">Seleccione Donatario</label>
+                                  <select name="grantee_id" class="form-control" required>
+                                      <option value=""></option>
+                                      @foreach ($grantees as $grantee)
+                                          <option value="{{ $grantee->id }}">{{ $grantee->name }}</option>
+                                      @endforeach
+                                  </select>
+                              </div>
+                          </div>
+                          <div class="row">
+                              <div class="col-sm-6">
+                                  <div class="form-group label-floating">
+                                    <label class="control-label">Cantidad de Eco a canjear</label>
+                                    <input type="number" max="{{ $total_saldo_contable }}" class="form-control" name="quantity_eco_donar" value="{{ old('quantity_eco_donar') }}" required>
+                                  </div>
+                              </div>
+                          </div>
+                          <button class="btn btn-success">Canjear</button>
+                      </div>
+                    </form>  
         </div>
     </div>
 

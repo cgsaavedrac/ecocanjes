@@ -12,6 +12,11 @@ class EquivalenceController extends Controller
     return view('admin.equivalence.index')->with(compact('equivalences'));	
     }
 
+    public function index2(){
+    $equivalences = Equivalence::where('active', 1)->orderBy('id', 'DESC')->paginate(10);
+    return view('userapp.equivalence.index')->with(compact('equivalences'));  
+    }
+
     public function edit($id)
     {
         $equivalence = Equivalence::find($id);
