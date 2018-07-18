@@ -64,6 +64,7 @@
                             <li><a href="{{ url('admin/report/cargas_bip') }}">Cargas a BIP</a></li>
                             <li><a href="{{ url('admin/report/donaciones') }}">Donaciones Procesadas</a></li>
                             <li><a href="{{ url('admin/report/saldoDisponible') }}">Saldos disponibles (ECO)</a></li>
+                            <li><a href="{{ url('admin/report/usuariosRegistrados') }}">Usuarios registrados</a></li>
                         </ul>
                     </li>
                     

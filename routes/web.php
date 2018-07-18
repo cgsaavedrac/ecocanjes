@@ -122,6 +122,7 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
 	Route::get('/report/excel_donaciones', 'ReportController@excelDonaciones');
 	Route::get('/report/saldoDisponible', 'ReportController@rpt_saldoDisponible');
 	Route::get('/report/excel_saldoDisponible', 'ReportController@excelSaldoDisponible');
+	Route::get('/report/usuariosRegistrados', 'ReportController@usuariosRegistrados');
 
 
 });

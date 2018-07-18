@@ -88,5 +88,11 @@ class ReportController extends Controller
     	})->export('xls');
     }
 
+    public function usuariosRegistrados(){
+        $resumen_usuarios_mes = DB::select('SELECT monthname(created_at) as mes, count(id) as cantidad from users where admin = '."'0'".' group by monthname(created_at) order by mes DESC');
+        return view('admin.report.usuariosRegistrados')->with(compact('resumen_usuarios_mes'));
+
+    }
+
 
 }
