@@ -179,6 +179,7 @@ return [
         Collective\Html\HtmlServiceProvider::class,
         Greggilbert\Recaptcha\RecaptchaServiceProvider::class,
         Fomvasss\Punycode\PunycodeServiceProvider::class,
+        Maatwebsite\Excel\ExcelServiceProvider::class,
 
     ],
 
@@ -232,6 +233,7 @@ return [
         'Form' => 'Collective\Html\FormFacade',
         'Html' => 'Collective\Html\HtmlFacade',
         'Recaptcha' => Greggilbert\Recaptcha\Facades\Recaptcha::class,
+        'Excel' => Maatwebsite\Excel\Facades\Excel::class,
 
     ],
 

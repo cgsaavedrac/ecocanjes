@@ -58,6 +58,14 @@
                             <li><a href="{{ url('admin/charge') }}">Agregar Eco Puntos</a></li>
                         </ul>
                     </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="background: #4caf50;color: #ffffff">Reportes <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="{{ url('admin/report/cargas_bip') }}">Cargas a BIP</a></li>
+                            <li><a href="{{ url('admin/report/donaciones') }}">Donaciones Procesadas</a></li>
+                            <li><a href="{{ url('admin/report/saldoDisponible') }}">Saldos disponibles (ECO)</a></li>
+                        </ul>
+                    </li>
                     
                     @endif
                     @if (auth()->user()->admin == '0') 

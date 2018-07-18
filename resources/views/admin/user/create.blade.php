@@ -82,7 +82,7 @@
 
                             <div class="form-group text-center">
                                 <button type="submit" class="btn btn-success">
-                                    Registrarse
+                                    Registrar
                                 </button>
                             </div>
             </form>

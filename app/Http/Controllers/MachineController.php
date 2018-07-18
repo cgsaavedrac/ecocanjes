@@ -14,9 +14,9 @@ class MachineController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $machines = Machine::where('active', 1)->orderBy('id', 'DESC')->paginate(10);
+        $machines = Machine::search($request->name)->where('active', 1)->orderBy('id', 'DESC')->paginate(10);
         return view('admin.machine.index')->with(compact('machines'));
     }
 

@@ -47,10 +47,10 @@
                                     <td>{{ $sale->comment}}</td>
                                     <td>{{ $sale->user->name}}</td>
                                     <td class="td-actions text-right">
-                                        <a href="{{ url('/admin/sale/'.$sale->id.'/edit') }}" rel="tooltip" title="Editar Usuario" class="btn btn-success btn-simple btn-xs">
+                                        <a href="{{ url('/admin/sale/'.$sale->id.'/edit') }}" rel="tooltip" title="Editar Venta" class="btn btn-success btn-simple btn-xs">
                                             <i class="fa fa-edit"></i>
                                         </a>
-                                        <a href="{{ url('/admin/sale/'.$sale->id.'/delete') }}" onclick="return confirm('¿Esta seguro de eliminar este registro?')" rel="tooltip" title="Eliminar Usuario" class="btn btn-danger btn-simple btn-xs">
+                                        <a href="{{ url('/admin/sale/'.$sale->id.'/delete') }}" onclick="return confirm('¿Esta seguro de eliminar este registro?')" rel="tooltip" title="Eliminar Venta" class="btn btn-danger btn-simple btn-xs">
                                             <i class="fa fa-times"></i>
                                         </a>
                                     </td>

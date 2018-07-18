@@ -111,9 +111,17 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
 	Route::get('/sale', 'SaleController@index'); //listado
 	Route::get('/sale/create', 'SaleController@create'); //formulario crear
 	Route::post('/sale', 'SaleController@store'); //guardar
-	Route::get('/user/{id}/edit', 'UserController@edit'); //formulario edición
-	Route::post('/user/{id}/edit', 'UserController@update'); //actualizar
-	Route::get('/user/{id}/delete', 'UserController@destroy');
+	Route::get('/sale/{id}/edit', 'SaleController@edit');
+	Route::post('/sale/{id}/edit', 'SaleController@update'); 
+	Route::get('/sale/{id}/delete', 'SaleController@destroy');
+
+	//Reportes
+	Route::get('/report/cargas_bip', 'ReportController@rpt_cargas_bip');
+	Route::get('/report/excel_cargas_bip', 'ReportController@excelCargasBip');
+	Route::get('/report/donaciones', 'ReportController@rpt_donaciones');
+	Route::get('/report/excel_donaciones', 'ReportController@excelDonaciones');
+	Route::get('/report/saldoDisponible', 'ReportController@rpt_saldoDisponible');
+	Route::get('/report/excel_saldoDisponible', 'ReportController@excelSaldoDisponible');
 
 
 });

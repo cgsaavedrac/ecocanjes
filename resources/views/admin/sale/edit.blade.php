@@ -11,8 +11,10 @@
     <div class="container">
 
         <div class="section">
-            <h2 class="title text-center">Editar Usuario</h2>
-            @if ($errors->any())
+            <h2 class="title text-center">Editar Venta</h2>
+            <form class="form" method="POST" action="{{ url('/admin/sale/'.$sale->id.'/edit') }}">
+                {{ csrf_field() }}
+                @if ($errors->any())
                 <div class="alert alert-danger">
                     <ul>
                         @foreach ($errors->all() as $error)
@@ -20,92 +22,78 @@
                         @endforeach
                     </ul>
                 </div>
-            @endif 
-            <form class="form" method="POST" action="{{ url('/admin/user/'.$user->id.'/edit') }}">
-                {{ csrf_field() }}
-                <div class="content">
-
-                    <div class="input-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                        <span class="input-group-addon">
-                            <i class="material-icons">person</i>
-                        </span>
-                        <input id="name" type="text" class="form-control" placeholder="Su nombre" name="name" value="{{ old('name', $user->name) }}" required autofocus>
-
-                        @if ($errors->has('name'))
-                            <span class="help-block">
-                                <strong>{{ $errors->first('name') }}</strong>
-                            </span>
-                        @endif
+                @endif
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group label-floating">
+                            <label class="control-label">Fecha Venta</label>
+                            <input type="date" class="form-control" name="sale_date" value="{{ old('sale_date', $sale_date_format) }}" required>
+                        </div>
                     </div>
-
-                    <div class="input-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                        <span class="input-group-addon">
-                            <i class="material-icons">mail</i>
-                        </span>
-                        <input id="email" type="email" class="form-control" placeholder="Su correo" name="email" value="{{ old('email', $user->email) }}" required>
-
-                        @if ($errors->has('email'))
-                            <span class="help-block">
-                                <strong>{{ $errors->first('email') }}</strong>
-                            </span>
-                        @endif
+                    <div class="col-sm-6">
+                        <div class="form-group label-floating">
+                            <label class="control-label">Comprador</label>
+                            <input type="text" class="form-control" name="buyer" value="{{ old('buyer', $sale->buyer) }}" required>
+                        </div>
                     </div>
-
-                    <div class="input-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                        <span class="input-group-addon">
-                            <i class="material-icons">how_to_reg</i>
-                        </span>
-                            <select name="admin" class="form-control">
-                                <option value="0"></option>
-                                @if($user->admin == 0)
-                                <option value="{{ $user->admin }}" @if($user->admin == 
-                                    old('admin', $user->admin)) selected @endif>
-                                    @if($user->admin == 0)Usuario APP @endif
-                                </option>
-                                <option value="1">
-                                    Administrador
-                                </option>
-                                @else
-                                <option value="{{ $user->admin }}" @if($user->admin == 
-                                    old('admin', $user->admin)) selected @endif>
-                                    @if($user->admin == 1)Administrador @endif
-                                </option>
-                                <option value="0">
-                                    Usuario APP
-                                </option>
-                                @endif
-                                
+                </div>  
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group label-floating">
+                            <label class="control-label">Tipo de Material</label>
+                            <select name="material_type" id="material_type" class="form-control" required>
+                                <option value="{{ $sale->material_type }}" selected="">{{ $sale->material_type }}</option>
+                                <option value="Pet">Pet</option>
+                                <option value="Latas">Latas</option>
                             </select>
-                        
+                        </div>
                     </div>
-
-                    <div class="input-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                        <span class="input-group-addon">
-                            <i class="material-icons">lock_outline</i>
-                        </span>
-                        <input id="password" type="password" class="form-control" placeholder="Su contraseña" name="password">
-
-                        @if ($errors->has('password'))
-                            <span class="help-block">
-                                <strong>{{ $errors->first('password') }}</strong>
-                            </span>
-                        @endif
+                    <div class="col-sm-6">
+                        <div class="form-group label-floating">
+                            <label class="control-label">Cantidad(Kg)</label>
+                            <input type="text" class="form-control" pattern="[0-9]{1,8}" title="Letras y números. Tamaño mínimo: 1. Tamaño máximo: 8" name="quantity" value="{{ old('quantity', $sale->quantity) }}" required>
+                        </div>
                     </div>
-
-                    <div class="input-group">
-                        <span class="input-group-addon">
-                            <i class="material-icons">lock_outline</i>
-                        </span>
-                        <input id="password-confirm" type="password" class="form-control" placeholder="Repita su contraseña" name="password_confirmation">
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group label-floating">
+                            <label class="control-label">Valor unitario</label>
+                            <input type="text" class="form-control" pattern="[0-9]{1,8}" title="Letras y números. Tamaño mínimo: 1. Tamaño máximo: 8" name="unit_value" value="{{ old('unit_value', $sale->unit_value) }}" required>
+                        </div>
                     </div>
-
-                    <div class="form-group text-center">
-                        <button type="submit" class="btn btn-success">
-                            Editar Usuario
-                        </button>
-                        <a href="{{ url('/admin/user') }}" class="btn btn-default">Cancelar</a>
+                    <div class="col-sm-6">
+                        <div class="form-group label-floating">
+                            <label class="control-label">Valor Total recibido</label>
+                            <input type="text" class="form-control" pattern="[0-9]{1,8}" title="Letras y números. Tamaño mínimo: 1. Tamaño máximo: 8" name="total_value_received" value="{{ old('total_value_received', $sale->total_value_received) }}" required>
+                        </div>
                     </div>
-            </form>  
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group label-floating">
+                            <label class="control-label">Número factura</label>
+                            <input type="text" class="form-control" pattern="[0-9]{1,8}" title="Letras y números. Tamaño mínimo: 1. Tamaño máximo: 8" name="bill_number" value="{{ old('bill_number', $sale->bill_number) }}" required>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group label-floating">
+                            <label class="control-label">Comentarios</label>
+                            <textarea class="form-control" name="comment" id="comment" cols="30" rows="10" required>{{ old('comment', $sale->comment) }}</textarea>
+                        </div>
+                    </div>
+                </div>                  
+                <button class="btn btn-primary">Editar Venta</button>
+                <a href="{{ url('/admin/sale') }}" class="btn btn-default">Cancelar</a>
+            </form>
+
+
+
+
+
+
+
+            
             
         </div>
 

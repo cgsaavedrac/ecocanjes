@@ -73,4 +73,8 @@ class User extends Authenticatable
     {
         $this->notify(new ResetPasswordNotification($token));
     }
+
+    public function scopeSearch($query, $name){
+        return $query->where('name', 'LIKE', "%$name%")->orWhere('email', 'LIKE', "%$name%")->orWhere('created_at', 'LIKE', "%$name%");
+    }
 }

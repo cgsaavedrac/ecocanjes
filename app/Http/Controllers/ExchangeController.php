@@ -15,13 +15,13 @@ class ExchangeController extends Controller
      */
     public function index()
     {
-        $exchanges = Exchange::orderBy('created_at', 'DESC')->paginate(10);
+        $exchanges = Exchange::where('status', 'Abierto')->orderBy('created_at', 'DESC')->paginate(10);
         return view('admin.exchange.index')->with(compact('exchanges'));
     }
 
     public function donaciones()
     {
-        $exchanges = exchange_grantees::orderBy('created_at', 'DESC')->paginate(10);
+        $exchanges = exchange_grantees::where('status', 'Abierto')->orderBy('created_at', 'DESC')->paginate(10);
         return view('admin.exchange.donaciones')->with(compact('exchanges'));
     }
 

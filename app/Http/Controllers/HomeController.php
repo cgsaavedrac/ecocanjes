@@ -6,10 +6,13 @@ use Illuminate\Http\Request;
 use App\Balance;
 use App\RecyclingRecord;
 use App\Exchange;
+use App\exchange_grantees;
 use App\Equivalence;
 use Carbon\Carbon;
 use App\Machine;
 use App\Banner;
+use App\Sale;
+use App\User;
 use DB;
 
 class HomeController extends Controller
@@ -60,9 +63,43 @@ class HomeController extends Controller
             $mes_actual = date('F');
             $resumen_comunas = DB::select('SELECT cities.name, SUM(recycling_records.quantity) as cantidad from recycling_records, machines, cities where machines.id = recycling_records.machine_id and machines.city_id = cities.id and monthname(recycling_records.recycling_date) = '."'$mes_actual'".' group by cities.name');
             $resumen_usuarios = DB::select('SELECT users.name, SUM(recycling_records.quantity) as cantidad from recycling_records, users where users.id = recycling_records.user_id  and monthname(recycling_records.recycling_date) = '."'$mes_actual'".' group by users.name');
-            $top_five_usuarios_todo_periodo = DB::select('SELECT users.name, SUM(recycling_records.quantity) as cantidad from recycling_records, users where users.id = recycling_records.user_id  group by users.name order by cantidad DESC LIMIT 5');
+            $top_ten_usuarios_todo_periodo = DB::select('SELECT users.name, SUM(recycling_records.quantity) as cantidad from recycling_records, users where users.id = recycling_records.user_id  group by users.name order by cantidad DESC LIMIT 10');
             $exchanges = Exchange::where('status', 'Abierto')->orderBy('created_at', 'DESC')->paginate(5);
-            return view('home')->with(compact('resumen_comunas', 'resumen_usuarios', 'top_five_usuarios_todo_periodo', 'exchanges'));   
+            $exchange_grantees = exchange_grantees::where('status', 'Abierto')->orderBy('created_at', 'DESC')->paginate(5);
+            $cantidad_canjes_bip_pendientes = Exchange::where('status', 'Abierto')->count();
+            $cantidad_donaciones_pendientes = exchange_grantees::where('status', 'Abierto')->count();
+            $monto_total_donado = exchange_grantees::where('status', 'Procesado')->sum('clp');
+
+            $cantidad_canjes_bip_cobrados = Exchange::where('status', 'Procesado')->sum('clp');
+            $cantidad_donaciones_cobrados = exchange_grantees::where('status', 'Procesado')->sum('clp');
+            $total_cobrados = $cantidad_canjes_bip_cobrados + $cantidad_donaciones_cobrados;
+
+
+            $saldo_contable = Balance::where('movement_type_id', '1')->where('status', '1')->sum('mount');
+            $saldo_contable_admin = Balance::where('movement_type_id', '3')->where('status', '1')->sum('mount');
+
+            $user_balance_salidas = Balance::where('movement_type_id','=','2')->sum('mount');
+
+            $total_saldo_contable = ($saldo_contable + $saldo_contable_admin) - $user_balance_salidas;
+
+            $cantidad_reciclada_pet = RecyclingRecord::where('recycling_type', 0)->sum('quantity');
+            $cantidad_reciclada_lat = RecyclingRecord::where('recycling_type', 1)->sum('quantity');
+            $kilos_reciclados_lat = $cantidad_reciclada_lat / 65;
+            $kilos_reciclados_pet = $cantidad_reciclada_pet / 33;
+            $basura_ahorrada = number_format($kilos_reciclados_pet + $kilos_reciclados_lat, 0, ',', '.');
+            $cantidad_vendida = Sale::sum('quantity');
+            $monto_vendido = Sale::sum('total_value_received');
+
+
+            $donado_por_fundaciones = DB::select('SELECT grantees.name, sum(exchange_grantees.clp) as suma_donatario from grantees, exchange_grantees where grantees.id = exchange_grantees.grantee_id and exchange_grantees.status = '."'Procesado'".' group by grantees.name');
+
+            $total_usuarios = User::where('admin', 0)->count();
+
+
+
+
+
+            return view('home')->with(compact('resumen_comunas', 'resumen_usuarios', 'top_ten_usuarios_todo_periodo', 'exchanges', 'exchange_grantees', 'cantidad_canjes_bip_pendientes', 'cantidad_donaciones_pendientes', 'monto_total_donado', 'donado_por_fundaciones', 'total_saldo_contable', 'total_cobrados', 'basura_ahorrada', 'cantidad_vendida', 'monto_vendido', 'total_usuarios'));   
         }
     }
 

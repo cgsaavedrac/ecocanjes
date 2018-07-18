@@ -23,4 +23,8 @@ class Machine extends Model
         return $this->hasMany(RecyclingRecord::class);
     }
 
+    public function scopeSearch($query, $name){
+        return $query->where('terminal_number', 'LIKE', "%$name%")->orWhere('address', 'LIKE', "%$name%")->orWhere('created_at', 'LIKE', "%$name%");
+    }
+
 }

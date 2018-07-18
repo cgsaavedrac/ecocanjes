@@ -16,6 +16,13 @@
             <div class="team">
                 <div class="row">
                     <a href="{{ url('/admin/machine/create') }}" class="btn btn-primary btn-round">Nueva Maquina</a>
+                    <!-- Buscador -->
+                    <form action="" method="GET">
+                        <div class="form-group">
+                            <input type="text" name="name" class="form-control" placeholder="Buscar...">
+                        </div>
+                    </form>
+                    <!-- Fin del buscador -->
                     <div class="table-responsive">
                         <table class="table table-condensed">
                             <thead>

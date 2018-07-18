@@ -242,16 +242,48 @@ function initMap(){
   <div class="container">
     <div class="row">
       <div class="col-sm-6">
-        <div id="columnchart_material"></div> 
+        <h3 style="color:#4caf50">Canjes</h3>
+        <h4>Cargas BIP</h4>
+        <h5>Pendientes {{ $cantidad_canjes_bip_pendientes }}</h5> 
+        <h4>Donaciones</h4>
+        <h5>Pendientes {{ $cantidad_donaciones_pendientes }}</h5>   
       </div>
       <div class="col-sm-6">
-        <div id="columnchart_material2"></div> 
+        <h3 style="color:#4caf50">Indicadores de Impacto</h3>
+        <h5>Monto total donado ${{ $monto_total_donado }}</h5>
+        <div class="table-responsive">
+          <table class="table table-condensed">
+            <thead>
+              <tr>
+                <td>Fundación</td>
+                <td>Cantidad</td>
+              </tr>
+            </thead>
+            <tbody>
+              @foreach($donado_por_fundaciones as $donado_fundacion)
+              <tr>
+                <td>{{ $donado_fundacion->name }}</td>
+                <td>${{ $donado_fundacion->suma_donatario }}</td>
+              </tr>
+              @endforeach
+            </tbody>
+          </table>
+        </div>  
       </div>
     </div>
     <div class="row">
       <div class="col-sm-6">
-       <div class="table-responsive">
-          <h3>TOP 5 de Usuarios Acumulado</h3>
+        <h3 style="color:#4caf50">Financiero</h3>
+        <h5>Total de saldos disponibles para canje ECO{{ $total_saldo_contable }}</h5> 
+        <h5>Total cobrado ${{ $total_cobrados }}</h5>  
+        <h5>Total material reciclado {{ $basura_ahorrada }}Kg</h5> 
+        <h5>Material vendido {{ number_format($cantidad_vendida, 0, ',', '.') }}Kg - ${{ number_format($monto_vendido, 0, ',', '.') }}</h5> 
+      </div>
+      <div class="col-sm-6">
+        <h3 style="color:#4caf50">Usuarios</h3>
+        <h5>Total usuarios {{ $total_usuarios }}</h5>
+        <div class="table-responsive">
+          <h5>TOP 10 de Usuarios Acumulado</h5>
           <table class="table table-condensed">
               <thead>
                   <tr style="color: #00529e;font-weight: 500;">
@@ -260,7 +292,7 @@ function initMap(){
                   </tr>
               </thead>
               <tbody>
-                  @foreach ($top_five_usuarios_todo_periodo as $top)
+                  @foreach ($top_ten_usuarios_todo_periodo as $top)
                   <tr>
                       <td>{{ $top->name}}</td>
                       <td>{{ $top->cantidad}}</td>
@@ -268,11 +300,25 @@ function initMap(){
                   @endforeach
               </tbody>
           </table>
-        </div>
+        </div>  
+      </div>
+    </div>
+
+
+
+
+    <div class="row">
+      <div class="col-sm-6">
+        <div id="columnchart_material"></div> 
       </div>
       <div class="col-sm-6">
+        <div id="columnchart_material2"></div> 
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12">
         <div class="table-responsive">
-          <h3>Solicitudes de Canje Pendientes</h3>
+          <h3>Solicitudes de Canje Pendientes BIP</h3>
           <table class="table table-condensed">
             <thead>
                 <tr style="color: #00529e;font-weight: 500;">
@@ -293,12 +339,9 @@ function initMap(){
                     <td>{{ $exchange->clp}}</td>
                     <td>{{ $exchange->transaction_date}}</td>
                     <td class="td-actions text-right">
-                        <form action="{{ url('/admin/exchange/'.$exchange->id.'/change') }}" method="post">
-                            {{ csrf_field() }}
-                            <button type="submit" rel="tooltip" title="Marcar como Procesado" class="btn btn-danger btn-simple btn-xs">
-                                <i class="fa fa-check"></i>
-                            </button>
-                        </form>
+                      <a href="{{ url('/admin/exchange/'.$exchange->id.'/change') }}" onclick="return confirm('¿Esta seguro de procesar este registro?')" rel="tooltip" title="Marcar como procesado" class="btn btn-danger btn-simple btn-xs">
+                      <i class="fa fa-check"></i>
+                      </a>
                     </td>
                 </tr>
                 @endforeach
@@ -307,6 +350,51 @@ function initMap(){
         </div>
       </div>
     </div>
+
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="table-responsive">
+          <h3>Solicitudes de Donaciones Pendientes</h3>
+          <table class="table table-condensed">
+            <thead>
+                <tr style="color: #00529e;font-weight: 500;">
+                    <td class="text-center">ID</td>
+                    <td>Nombre de Usuario</td>
+                    <td>Correo</td>
+                    <td>Fundación</td>
+                    <td>Eco Puntos donados</td>
+                    <td>Pesos Chilenos</td>
+                    <td>Fecha</td>
+                    <td>Estado Solicitud</td>
+                    <td class="td-actions text-right">Opciones</td>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($exchange_grantees as $exchange)
+                <tr>
+                    <td class="text-center">{{ $exchange->id}}</td>
+                    <td>{{ $exchange->user->name}}</td>
+                    <td>{{ $exchange->user->email }}</td>
+                    <td>{{ $exchange->grantee->name}}</td>
+                    <td>{{ $exchange->quantity_eco}}</td>
+                    <td>{{ $exchange->clp}}</td>
+                    <td>{{ $exchange->transaction_date}}</td>
+                    <td>{{ $exchange->status}}</td>
+                    <td class="td-actions text-right">
+                        @if($exchange->status == 'Abierto')
+                            <a href="{{ url('/admin/exchange/'.$exchange->id.'/change_grantee') }}" onclick="return confirm('¿Esta seguro de procesar este registro?')" rel="tooltip" title="Marcar como procesado" class="btn btn-danger btn-simple btn-xs">
+                            <i class="fa fa-check"></i>
+                            </a>
+                        @endif
+                    </td>
+                </tr>
+                @endforeach
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
   </div>
   </div>
 </div>

@@ -14,14 +14,13 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         if(auth()->user()->rol == 'sadmin'){
-            $users = User::where('active', 1)->orderBy('id', 'DESC')->paginate(10);  
+            $users = User::search($request->name)->where('active', 1)->orderBy('id', 'DESC')->paginate(10);  
         }else{
-            $users = User::where('active', 1)->where('admin', '0')->orderBy('id', 'DESC')->paginate(10);    
+            $users = User::search($request->name)->where('active', 1)->where('admin', '0')->orderBy('id', 'DESC')->paginate(10);    
         }
-        //$users = User::where('active', 1)->orderBy('id', 'DESC')->paginate(10);
         return view('admin.user.index')->with(compact('users'));
     }
 
