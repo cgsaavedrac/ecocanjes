@@ -90,7 +90,27 @@ class ReportController extends Controller
 
     public function usuariosRegistrados(){
         $resumen_usuarios_mes = DB::select('SELECT monthname(created_at) as mes, count(id) as cantidad from users where admin = '."'0'".' group by monthname(created_at) order by mes DESC');
-        return view('admin.report.usuariosRegistrados')->with(compact('resumen_usuarios_mes'));
+
+        $resumen_usuarios_dia = DB::select('SELECT dayname(created_at) as dia, count(id) as cantidad from users where admin = '."'0'".' group by dayname(created_at), dayofweek(created_at) order by dayofweek(created_at)');
+
+        $resumen_usuarios_hora = DB::select('SELECT hour(created_at) as hora, count(id) as cantidad from users where admin = '."'0'".' group by hour(created_at) order by hour(created_at)');
+
+
+
+        return view('admin.report.usuariosRegistrados')->with(compact('resumen_usuarios_mes', 'resumen_usuarios_dia', 'resumen_usuarios_hora'));
+
+    }
+
+    public function canjesRegistrados(){
+        $resumen_canjes_mes = DB::select('SELECT monthname(transaction_date) as mes, count(id) as cantidad from balances where movement_type_id = "2" group by monthname(transaction_date) order by monthname(transaction_date)');
+
+        $resumen_canjes_dia = DB::select('SELECT dayname(transaction_date) as dia, count(id) as cantidad from balances where movement_type_id = "2" group by dayname(transaction_date), dayofweek(transaction_date) order by dayofweek(transaction_date)');
+
+        $resumen_canjes_hora = DB::select('SELECT hour(transaction_date) as hora, count(id) as cantidad from balances where movement_type_id = "2" group by hour(transaction_date) order by hour(transaction_date)');
+
+
+
+        return view('admin.report.canjesRegistrados')->with(compact('resumen_canjes_mes', 'resumen_canjes_dia', 'resumen_canjes_hora'));
 
     }
 

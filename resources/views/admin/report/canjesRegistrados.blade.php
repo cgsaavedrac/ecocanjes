@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Reporte Usuarios Registrados')
+@section('title', 'Reporte Canjes')
 @section('body-class', 'product-page')
 
 @section('content')
@@ -11,7 +11,7 @@
     <div class="container">
 
         <div class="section text-center">
-            <h2 class="title" style="color: #00529e">Reporte Usuarios Registrados</h2>
+            <h2 class="title" style="color: #00529e">Reporte Canjes</h2>
 
             <div class="team">
                 <div class="row">
@@ -43,28 +43,28 @@
 
   function drawChart() {
     var data = google.visualization.arrayToDataTable([
-      ['Mes', 'Usuarios Registrados'],
-      @foreach ($resumen_usuarios_mes as $resumen)
+      ['Mes', 'Canjes'],
+      @foreach ($resumen_canjes_mes as $resumen)
       ['{{$resumen->mes}}', {{$resumen->cantidad}}],
       @endforeach
     ]);
     var options = {
       chart: {
-        title: 'Usuarios Registrados por mes.',
+        title: 'Canjes Registrados por mes.',
       }
     };
     var chart = new google.charts.Bar(document.getElementById('columnchart_material'));
     chart.draw(data, google.charts.Bar.convertOptions(options));
     //grafico dia
     var data = google.visualization.arrayToDataTable([
-      ['Día', 'Usuarios Registrados'],
-      @foreach ($resumen_usuarios_dia as $resumen_dia)
+      ['Día', 'Canjes'],
+      @foreach ($resumen_canjes_dia as $resumen_dia)
       ['{{$resumen_dia->dia}}', {{$resumen_dia->cantidad}}],
       @endforeach
     ]);
     var options = {
       chart: {
-        title: 'Usuarios Registrados por día de la semana.',
+        title: 'Canjes Registrados por día de la semana.',
       }
     };
     var chart = new google.charts.Bar(document.getElementById('columnchart_material2'));
@@ -72,14 +72,14 @@
 
     //grafico hora
     var data = google.visualization.arrayToDataTable([
-      ['Hora', 'Usuarios Registrados'],
-      @foreach ($resumen_usuarios_hora as $resumen_hora)
+      ['Hora', 'Canjes'],
+      @foreach ($resumen_canjes_hora as $resumen_hora)
       ['{{$resumen_hora->hora}}', {{$resumen_hora->cantidad}}],
       @endforeach
     ]);
     var options = {
       chart: {
-        title: 'Usuarios Registrados por Hora.',
+        title: 'Canjes Registrados por Hora.',
       }
     };
     var chart = new google.charts.Bar(document.getElementById('columnchart_material3'));
