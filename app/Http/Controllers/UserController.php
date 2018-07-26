@@ -45,11 +45,13 @@ class UserController extends Controller
         //validaciones
         $rules = [
             'birth_date' => 'required',
+            'sexo' => 'required',
             'region2' => 'required',
             'city2' => 'required',
         ];
         $message = [
             'birth_date.required' => 'Indique su fecha de nacimiento',
+            'sexo.required' => 'Indique su sexo',
             'region2.required' => 'Indique su región.',
             'city2.required' => 'Indique su comuna',
         ];      

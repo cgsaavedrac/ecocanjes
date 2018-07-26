@@ -52,7 +52,7 @@
                             <select name="sexo" id="sexo" class="form-control">
                                 <option value="{{ $user->sexo }}" @if($user->id == 
                                     old('sexo', $user->sexo)) selected @endif>
-                                    @if ($user->sexo == 'M')Masculino @else Femenino @endif
+                                    @if ($user->sexo == 'M')Masculino @endif @if ($user->sexo == 'F')Femenino @endif @if($user->sexo == '') Seleccione @endif
                                 </option>
                                 <option value="M">Masculino</option>
                                 <option value="F">Femenino</option>
@@ -63,13 +63,12 @@
                 <div class="row">
                     <div class="col-sm-6">
                         <div class="form-group label-floating">
-                            
-                            {!! Form::select('region2', $regions_combo, null,['placeholder'=>$user->region->name,'class'=>'form-control','id'=>'region2']) !!}
+                            {!! Form::select('region2', $regions_combo, null,['placeholder'=>$user->region ? $user->region->name : 'Seleccione','class'=>'form-control','id'=>'region2']) !!}
                         </div>
                     </div>
                     <div class="col-sm-6">
                         <div class="form-group label-floating">
-                            {!! Form::select('city2',['placeholder'=>$user->city->name],null,['class'=>'form-control','id'=>'city2']) !!}
+                            {!! Form::select('city2',['placeholder'=>$user->city ? $user->city->name : 'Seleccione'],null,['class'=>'form-control','id'=>'city2']) !!}
                         </div>
                     </div>
                 </div>                 
