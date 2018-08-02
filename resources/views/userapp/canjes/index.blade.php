@@ -20,6 +20,7 @@
         <div class="section">
             <h2 class="title text-center">Mi Saldo<br>{{ $total_nc }} Ecopesos</h2>       
             <h5 class="title text-center" style="color:red">DISPONIBLE PARA CANJE {{ $total_saldo_contable }}</h5>
+            <input type="hidden" value="{{ $total_saldo_contable }}" id="tsc">
                 @if ($errors->any())
                   <div class="alert alert-danger">
                     <ul>
@@ -62,11 +63,11 @@
                               <div class="col-sm-6">
                                   <div class="form-group label-floating">
                                     <label class="control-label">Cantidad de Eco a canjear</label>
-                                    <input type="number" max="{{ $total_saldo_contable }}" class="form-control" name="quantity_eco" value="{{ old('quantity_eco') }}" required>
+                                    <input type="number" min="1" max="{{ $total_saldo_contable }}" class="form-control" name="quantity_eco" value="{{ old('quantity_eco') }}" required>
                                   </div>
                               </div>
                           </div>
-                          <button class="btn btn-success">Canjear</button>
+                          <button class="btn btn-success" id="btn">Canjear</button>
                       </div>
                     </form>  
                     <form action="{{ url('/userapp/canjes/confirmed') }}" method="post">
@@ -87,11 +88,11 @@
                               <div class="col-sm-6">
                                   <div class="form-group label-floating">
                                     <label class="control-label">Cantidad de Eco a canjear</label>
-                                    <input type="number" max="{{ $total_saldo_contable }}" class="form-control" name="quantity_eco_donar" value="{{ old('quantity_eco_donar') }}" required>
+                                    <input type="number" min="1" max="{{ $total_saldo_contable }}" class="form-control" name="quantity_eco_donar" value="{{ old('quantity_eco_donar') }}" required>
                                   </div>
                               </div>
                           </div>
-                          <button class="btn btn-success">Canjear</button>
+                          <button class="btn btn-success" id="btn">Canjear</button>
                       </div>
                     </form>  
         </div>
@@ -123,6 +124,12 @@ function canje(sel) {
             divD = document.getElementById("donatario");
             divD.style.display = "none";
       }
+      
+      var tsc = document.getElementById('tsc').value;
+      if(tsc == 0){
+        document.getElementById('btn').style.display = 'none';
+      }
+
 }
 </script>
 @include('includes.footeruserapp')
