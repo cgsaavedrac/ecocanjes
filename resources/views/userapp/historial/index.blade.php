@@ -11,7 +11,6 @@
     position: absolute;
     z-index: -1;
     background: #fff;
-    height: 100%;
     
   }
 </style>

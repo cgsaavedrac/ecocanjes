@@ -25,6 +25,7 @@
                                     <td>Eco Puntos</td>
                                     <td>Pesos Chilenos</td>
                                     <td>Fecha Donación</td>
+                                    <td>Fecha Ejecución (Procesado)</td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -35,6 +36,7 @@
                                     <td>{{ $donacion->grantee->name }}</td>
                                     <td>{{ $donacion->quantity_eco}}</td>
                                     <td>{{ $donacion->clp}}</td>
+                                    <td>{{ $donacion->created_at}}</td>
                                     <td>{{ $donacion->updated_at}}</td>
                                 </tr>
                                 @endforeach

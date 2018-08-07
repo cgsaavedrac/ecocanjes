@@ -24,7 +24,8 @@
                                     <td>Tarjeta Bip</td>
                                     <td>Eco Puntos</td>
                                     <td>Pesos Chilenos</td>
-                                    <td>Fecha Carga</td>
+                                    <td>Fecha Solicitud</td>
+                                    <td>Fecha Carga (Procesado)</td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -35,6 +36,7 @@
                                     <td>{{ $cargas->number_bip }}</td>
                                     <td>{{ $cargas->quantity_eco}}</td>
                                     <td>{{ $cargas->clp}}</td>
+                                    <td>{{ $cargas->created_at}}</td>
                                     <td>{{ $cargas->updated_at}}</td>
                                 </tr>
                                 @endforeach

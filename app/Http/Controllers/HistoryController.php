@@ -9,7 +9,7 @@ class HistoryController extends Controller
 {
     public function index(){
 	    $user_id = auth()->user()->id;
-	    $user_movimientos = Balance::where('user_id', $user_id)->paginate(15);
+	    $user_movimientos = Balance::where('user_id', $user_id)->orderby('transaction_date', 'DESC')->paginate(15);
 	    return view('userapp.historial.index')->with(compact('user_movimientos')); 
 	} 
 }

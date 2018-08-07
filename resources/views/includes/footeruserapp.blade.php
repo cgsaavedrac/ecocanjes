@@ -29,6 +29,6 @@
     <div class="text-center"><a href="{{ url('/userapp/comunidad') }}" style="color:#fff"><i class="material-icons">group</i><br>Comunidad</a></div>
     <div class="text-center"><a href="{{ url('/userapp/canjes') }}" style="color:#fff"><i class="material-icons">cached</i><br>Beneficios</a></div>
     <div class="text-center"><a href="{{ url('/userapp/actividad') }}" style="color:#fff"><i class="material-icons">mood</i><br>Mi actividad</a></div>
-    <div class="text-center"><a href="{{ url('/home') }}" style="color:#fff"><i class="material-icons">place</i><br>Donde Reciclar</a></div>
+    <div class="text-center"><a href="{{ url('/home') }}" style="color:#fff"><i class="material-icons">place</i><br>Reciclar</a></div>
   </div>
 </div>

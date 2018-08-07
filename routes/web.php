@@ -46,6 +46,9 @@ Route::post('/userapp/canjes/confirmed', 'CanjesController@confirmed');
 Route::get('/userapp/canjes/result_transaction/{number_bip}/{quantity_eco}/{grantee_id}/{quantity_eco_donar}', 'CanjesController@canjear_eco');
 Route::get('/admin/user/msn', 'UserController@redirect_reset_pass');
 Route::get('/userapp/equivalence', 'EquivalenceController@index2'); //listado
+Route::get('/userapp/periodos-facturacion', 'PageController@pagePeriodo');
+Route::get('/userapp/proceso-canje', 'PageController@procesoCanje');
+Route::get('userapp/maquinas', 'PageController@maquinas');
 
 Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
 

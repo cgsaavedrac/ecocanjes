@@ -38,7 +38,7 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     @if (auth()->user()->admin == '1')    
-                    <li><a href="{{ url('/home') }}" style="color:#ffffff">Panel de Control</a></li>
+                    <li><a href="{{ url('/home') }}" style="color:#ffffff">Inicio</a></li>
                     <li><a href="{{ url('/admin/user/') }}" style="color:#ffffff">Usuarios</a></li>
                     <li><a href="{{ url('/admin/sale/') }}" style="color:#ffffff">Ventas</a></li>         
                     <li><a href="{{ url('/admin/machine/') }}" style="color:#ffffff">Maquinas</a></li>
@@ -75,10 +75,10 @@
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="background: #4caf50;color: #ffffff">Como funciona <b class="caret"></b></a>
                         <ul class="dropdown-menu">
-                            <li><a href="{{ url('admin/exchange') }}" style="background: #4caf50;color: #ffffff">Periodos de facturación</a></li>
-                            <li><a href="{{ url('admin/charge') }}" style="background: #4caf50;color: #ffffff">Proceso de canje</a></li>
+                            <li><a href="{{ url('userapp/periodos-facturacion') }}" style="background: #4caf50;color: #ffffff">Periodos de facturación</a></li>
+                            <li><a href="{{ url('userapp/proceso-canje') }}" style="background: #4caf50;color: #ffffff">Proceso de canje</a></li>
                             <li><a href="{{ url('userapp/equivalence') }}" style="background: #4caf50;color: #ffffff">Tabla conversiones</a></li>
-                            <li><a href="{{ url('admin/ranking') }}" style="background: #4caf50;color: #ffffff">Máquinas</a></li>
+                            <li><a href="{{ url('userapp/maquinas') }}" style="background: #4caf50;color: #ffffff">Máquinas</a></li>
                         </ul>
                     </li>
                     <li><a href="{{ url('/userapp/contacto') }}" style="color:#ffffff">Contacto</a></li>
