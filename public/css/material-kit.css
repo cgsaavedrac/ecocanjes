@@ -47,6 +47,7 @@ body, h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4 {
 }
 
 a, a:hover, a:focus {
+  /*cambio color*/
   color: #4caf50;
 }
 a .material-icons, a:hover .material-icons, a:focus .material-icons {
