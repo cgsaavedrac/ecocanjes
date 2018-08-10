@@ -60,6 +60,7 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
 	Route::get('/user/{id}/edit', 'UserController@edit'); //formulario edición
 	Route::post('/user/{id}/edit', 'UserController@update'); //actualizar
 	Route::get('/user/{id}/delete', 'UserController@destroy');
+	Route::get('/user/excel_user', 'UserController@excelUser');
 
 	//CRUD MACHINE
 	Route::get('/machine', 'MachineController@index'); //listado
@@ -77,6 +78,8 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
 	Route::get('/exchange/donaciones', 'ExchangeController@donaciones'); //listado donaciones
 	Route::get('/exchange/{id}/change', 'ExchangeController@changeStatus'); //actualizar
 	Route::get('/exchange/{id}/change_grantee', 'ExchangeController@changeStatusGrantee'); //actualizar donaciones
+	Route::get('/exchange/excel_canjes', 'ExchangeController@excelCanje');
+	Route::get('/exchange/excel_donaciones', 'ExchangeController@excelDonaciones');
 
 	//CARGA DE ECO PUNTOS
 	Route::get('/charge', 'ChargeController@index');

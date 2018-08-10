@@ -69,6 +69,7 @@
                     </div>
                     {{ $users->links() }}
                 </div>
+                <a href="{{ url('admin/user/excel_user') }}" class="btn btn-success btn-sm">Exportar a Excel</a>
             </div>
 
         </div>

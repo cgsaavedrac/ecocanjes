@@ -29,8 +29,27 @@ class CanjesController extends Controller
 
         $total_saldo_contable = ($saldo_contable_user + $saldo_contable_admin) - $user_balance_salidas;
 
+        if ($total_saldo_contable == 0){
+            $msg = 'El Saldo para Canjear o Donar debe ser superior a 0';
+        }
+        else{
+            $msg = '';
+        }
+        if ($total_saldo_contable < 2000){
+            $msg = 'El Saldo para Canjear debe ser superior a 2000';
+        }
+        else{
+            $msg = '';
+        }
+        if ($total_saldo_contable == 0){
+            $msg2 = 'El Saldo para Donar debe ser superior a 0';
+        }
+        else{
+            $msg2 = '';
+        }
+
         $grantees = Grantee::where('active', 1)->get();
-    	return view('userapp.canjes.index')->with(compact('total_nc', 'total_saldo_contable', 'grantees'));
+    	return view('userapp.canjes.index')->with(compact('total_nc', 'total_saldo_contable', 'grantees', 'msg', 'msg2'));
     }
 
     public function confirmed(Request $request){

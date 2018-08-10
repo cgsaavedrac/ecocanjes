@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\User;
 Use App\Region;
 Use App\City;
+use Maatwebsite\Excel\Facades\Excel;
 
 class UserController extends Controller
 {
@@ -237,4 +238,43 @@ class UserController extends Controller
     public function redirect_reset_pass(){
         return view('admin.user.msn');
     }  
+
+    public function excelUser(){
+        Excel::create('Usuarios del Sistema', function($excel){
+            $excel->sheet('Datos', function($sheet){
+                //Header
+                $sheet->row(2, ['ID', 'Nombre', 'Correo', 'Fecha nacimiento', 'Región', 'Comuna', 'Fecha registro', 'Tipo Usuario']);
+                //Data
+                $users = User::where('active', '1')->orderby('created_at', 'DESC')->get();
+                foreach($users as $user){
+                    $row = [];
+                    $row[0] = $user->id;
+                    $row[1] = $user->name;
+                    $row[2] = $user->email;
+                    $row[3] = $user->birth_date;
+                    if ($user->region_id == null){
+                        $row[4] = '';  
+                    }else{
+                        $row[4] = $user->region->name;  
+                    }
+                    if ($user->city_id == null){
+                        $row[6] = '';
+                    }else{
+                       $row[6] = $user->city->name; 
+                    }
+                    
+                    $row[7] = $user->created_at;
+                    if ($user->admin == 1){
+                        $row[8] = 'Administrador';
+                    }
+                    if ($user->admin == 0){
+                        $row[8] = 'Usuario APP';
+                    }
+                    
+
+                    $sheet->appendRow($row);
+                }
+            });
+        })->export('xls');
+    }
 }

@@ -53,6 +53,7 @@
                       <div class="container" id="bip" style="display:none">
                           <div class="row">
                               <div class="col-sm-6">
+                                <h5 class="title text-center" style="color:red">{{ $msg }}</h5>
                                   <div class="form-group label-floating">
                                       <label class="control-label">Número tarjeta Bip</label>
                                        <input type="number" class="form-control" name="number_bip" value="{{ old('number_bip') }}" required>
@@ -62,7 +63,7 @@
                           <div class="row">
                               <div class="col-sm-6">
                                   <div class="form-group label-floating">
-                                    <label class="control-label">Cantidad de Eco a canjear</label>
+                                    <label class="control-label">Cantidad de Ecopesos a canjear</label>
                                     <input type="number" min="1" max="{{ $total_saldo_contable }}" class="form-control" name="quantity_eco" value="{{ old('quantity_eco') }}" required>
                                   </div>
                               </div>
@@ -75,6 +76,7 @@
                       <div class="container" id="donatario" style="display:none">
                           <div class="row">  
                               <div class="col-sm-6">
+                                <h5 class="title text-center" style="color:red">{{ $msg2 }}</h5>
                                   <label class="control-label">Seleccione Donatario</label>
                                   <select name="grantee_id" class="form-control" required>
                                       <option value=""></option>
@@ -87,12 +89,12 @@
                           <div class="row">
                               <div class="col-sm-6">
                                   <div class="form-group label-floating">
-                                    <label class="control-label">Cantidad de Eco a canjear</label>
+                                    <label class="control-label">Cantidad de Ecopesos a donar</label>
                                     <input type="number" min="1" max="{{ $total_saldo_contable }}" class="form-control" name="quantity_eco_donar" value="{{ old('quantity_eco_donar') }}" required>
                                   </div>
                               </div>
                           </div>
-                          <button class="btn btn-success" id="btn">Canjear</button>
+                          <button class="btn btn-success" id="btn2">Canjear</button>
                       </div>
                     </form>  
         </div>
@@ -128,6 +130,13 @@ function canje(sel) {
       var tsc = document.getElementById('tsc').value;
       if(tsc == 0){
         document.getElementById('btn').style.display = 'none';
+      }
+      if(tsc < 2000){
+        document.getElementById('btn').style.display = 'none';
+      }
+
+      if(tsc == 0){
+        document.getElementById('btn2').style.display = 'none';
       }
 
 }

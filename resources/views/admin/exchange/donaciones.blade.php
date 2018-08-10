@@ -55,6 +55,7 @@
                     </div>
                     {{ $exchanges->links() }}
                 </div>
+                <a href="{{ url('admin/exchange/excel_donaciones') }}" class="btn btn-success btn-sm">Exportar a Excel</a>
             </div>
 
         </div>
