@@ -26,6 +26,7 @@
                                     <td>Eco Puntos a Canjear</td>
                                     <td>Pesos Chilenos</td>
                                     <td>Fecha</td>
+                                    <td>Comentario</td>
                                     <td>Estado Solicitud</td>
                                     <td class="td-actions text-right">Opciones</td>
                                 </tr>
@@ -40,6 +41,10 @@
                                     <td>{{ $exchange->quantity_eco}}</td>
                                     <td>{{ $exchange->clp}}</td>
                                     <td>{{ $exchange->transaction_date}}</td>
+                                    <form action="{{ url('/admin/exchange/') }}" method="post">
+                                        {{ csrf_field() }}
+                                        <td>{{ $exchange->updated_at }} {{ $exchange->comment }}<input name="id" type="hidden" value="{{ $exchange->id }}"><textarea name="comment" class="form-control" placeholder="Escriba aquí un comentario"></textarea><button type="submit" class="btn btn-primary btn-just-icon"><i class="material-icons">save</i></button></td>
+                                    </form>
                                     <td>{{ $exchange->status}}</td>
                                     <td class="td-actions text-right">
                                         @if($exchange->status == 'Abierto')

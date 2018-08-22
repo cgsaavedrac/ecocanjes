@@ -80,6 +80,8 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
 	Route::get('/exchange/{id}/change_grantee', 'ExchangeController@changeStatusGrantee'); //actualizar donaciones
 	Route::get('/exchange/excel_canjes', 'ExchangeController@excelCanje');
 	Route::get('/exchange/excel_donaciones', 'ExchangeController@excelDonaciones');
+	Route::post('/exchange/donaciones', 'CommentController@commentControllerExchangeGrantee');
+	Route::post('/exchange/', 'CommentController@commentControllerExchange');
 
 	//CARGA DE ECO PUNTOS
 	Route::get('/charge', 'ChargeController@index');

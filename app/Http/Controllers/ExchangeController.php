@@ -138,7 +138,7 @@ class ExchangeController extends Controller
         Excel::create('Solicitudes Cargas BIP Pendientes', function($excel){
             $excel->sheet('Datos', function($sheet){
                 //Header
-                $sheet->row(2, ['ID', 'Usuario Beneficiado', 'Correo', 'Tarjeta Bip', 'Eco puntos', 'Pesos Chilenos', 'Fecha', 'Estado Solicitud']);
+                $sheet->row(2, ['ID', 'Usuario Beneficiado', 'Correo', 'Tarjeta Bip', 'Eco puntos', 'Pesos Chilenos', 'Fecha', 'Comentario', 'Estado Solicitud']);
                 //Data
                 $cargas_bip = Exchange::where('status', 'Abierto')->orderby('updated_at', 'DESC')->get();
                 foreach($cargas_bip as $cargas){
@@ -150,7 +150,8 @@ class ExchangeController extends Controller
                     $row[4] = $cargas->quantity_eco;
                     $row[5] = $cargas->clp;
                     $row[6] = $cargas->transaction_date;
-                    $row[7] = $cargas->status;
+                    $row[7] = $cargas->updated_at.' '.$cargas->comment;
+                    $row[8] = $cargas->status;
                     $sheet->appendRow($row);
                 }
             });
@@ -161,7 +162,7 @@ class ExchangeController extends Controller
         Excel::create('Donaciones', function($excel){
             $excel->sheet('Datos', function($sheet){
                 //Header
-                $sheet->row(2, ['ID', 'Usuario Beneficiado', 'Correo', 'Fundación', 'Eco puntos', 'Pesos Chilenos', 'Fecha', 'Estado Solicitud']);
+                $sheet->row(2, ['ID', 'Usuario Beneficiado', 'Correo', 'Fundación', 'Eco puntos', 'Pesos Chilenos', 'Fecha', 'Comentario', 'Estado Solicitud']);
                 //Data
                 $cargas_bip = exchange_grantees::where('status', 'Abierto')->orderby('updated_at', 'DESC')->get();
                 foreach($cargas_bip as $cargas){
@@ -173,7 +174,8 @@ class ExchangeController extends Controller
                     $row[4] = $cargas->quantity_eco;
                     $row[5] = $cargas->clp;
                     $row[6] = $cargas->transaction_date;
-                    $row[7] = $cargas->status;
+                    $row[7] = $cargas->updated_at.' '.$cargas->comment;
+                    $row[8] = $cargas->status;
                     $sheet->appendRow($row);
                 }
             });

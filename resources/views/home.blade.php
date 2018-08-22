@@ -250,6 +250,8 @@ function initMap(){
       </div>
       <div class="col-sm-6">
         <h3 style="color:#4caf50">Indicadores de Impacto</h3>
+        <h5>Monto total canjeado BIP ${{ $monto_total_canjeado_bip }}</h5>
+        <hr>
         <h5>Monto total donado ${{ $monto_total_donado }}</h5>
         <div class="table-responsive">
           <table class="table table-condensed">
@@ -324,12 +326,14 @@ function initMap(){
           <table class="table table-condensed">
             <thead>
                 <tr style="color: #00529e;font-weight: 500;">
+                    <td>ID</td>
                     <td>Nombre de Usuario</td>
                     <td>Correo</td>
                     <td>Número BIP</td>
                     <td>Eco Puntos a Canjear</td>
                     <td>Pesos Chilenos</td>
                     <td>Fecha</td>
+                    <td>Comentario</td>
                     <td>Estado Solicitud</td>
                     <td class="td-actions text-right">Opciones</td>
                 </tr>
@@ -337,12 +341,14 @@ function initMap(){
             <tbody>
                 @foreach ($exchanges as $exchange)
                 <tr>
+                    <td>{{ $exchange->id}}</td>
                     <td>{{ $exchange->user->name}}</td>
                     <td>{{ $exchange->user->email }}</td>
                     <td>{{ $exchange->number_bip}}</td>
                     <td>{{ $exchange->quantity_eco}}</td>
                     <td>{{ $exchange->clp}}</td>
                     <td>{{ $exchange->transaction_date}}</td>
+                    <td>{{ $exchange->updated_at }} {{ $exchange->comment }}</td>
                     <td>{{ $exchange->status}}</td>
                     <td class="td-actions text-right">
                       <a href="{{ url('/admin/exchange/'.$exchange->id.'/change') }}" onclick="return confirm('¿Esta seguro de procesar este registro?')" rel="tooltip" title="Marcar como procesado" class="btn btn-danger btn-simple btn-xs">
@@ -371,6 +377,7 @@ function initMap(){
                     <td>Eco Puntos donados</td>
                     <td>Pesos Chilenos</td>
                     <td>Fecha</td>
+                    <td>Comentario</td>
                     <td>Estado Solicitud</td>
                     <td class="td-actions text-right">Opciones</td>
                 </tr>
@@ -385,6 +392,7 @@ function initMap(){
                     <td>{{ $exchange->quantity_eco}}</td>
                     <td>{{ $exchange->clp}}</td>
                     <td>{{ $exchange->transaction_date}}</td>
+                    <td>{{ $exchange->updated_at }} {{ $exchange->comment }}</td>
                     <td>{{ $exchange->status}}</td>
                     <td class="td-actions text-right">
                         @if($exchange->status == 'Abierto')

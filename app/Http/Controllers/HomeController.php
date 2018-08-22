@@ -68,6 +68,7 @@ class HomeController extends Controller
             $exchange_grantees = exchange_grantees::where('status', 'Abierto')->orderBy('created_at', 'DESC')->paginate(5);
             $cantidad_canjes_bip_pendientes = Exchange::where('status', 'Abierto')->count();
             $cantidad_donaciones_pendientes = exchange_grantees::where('status', 'Abierto')->count();
+            $monto_total_canjeado_bip = Exchange::where('status', 'Procesado')->sum('clp');
             $monto_total_donado = exchange_grantees::where('status', 'Procesado')->sum('clp');
 
             $cantidad_canjes_bip_cobrados = Exchange::where('status', 'Procesado')->sum('clp');
@@ -99,7 +100,7 @@ class HomeController extends Controller
 
 
 
-            return view('home')->with(compact('resumen_comunas', 'resumen_usuarios', 'top_ten_usuarios_todo_periodo', 'exchanges', 'exchange_grantees', 'cantidad_canjes_bip_pendientes', 'cantidad_donaciones_pendientes', 'monto_total_donado', 'donado_por_fundaciones', 'total_saldo_contable', 'total_cobrados', 'basura_ahorrada', 'cantidad_vendida', 'monto_vendido', 'total_usuarios'));   
+            return view('home')->with(compact('resumen_comunas', 'resumen_usuarios', 'top_ten_usuarios_todo_periodo', 'exchanges', 'exchange_grantees', 'cantidad_canjes_bip_pendientes', 'cantidad_donaciones_pendientes', 'monto_total_canjeado_bip', 'monto_total_donado', 'donado_por_fundaciones', 'total_saldo_contable', 'total_cobrados', 'basura_ahorrada', 'cantidad_vendida', 'monto_vendido', 'total_usuarios'));   
         }
     }
 
