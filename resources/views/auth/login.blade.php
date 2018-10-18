@@ -11,6 +11,7 @@
                         {{ csrf_field() }}
                         <div class="header header-success text-center">
                             <h4>Iniciar sesión en {{ config('app.name') }}</h4>
+                            <h5>Versión Beta</h5>
                         </div>
                         @if ($errors->any())
                         <div class="alert alert-danger">

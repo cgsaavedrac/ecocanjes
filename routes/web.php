@@ -69,8 +69,8 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
 	Route::get('/machine/{id}/location', 'MachineController@location'); //formulario ingreso locations
 	//Ruta para el Combo dependiente
 	Route::get('/machine/cities/{id}', 'MachineController@getCity');
-	//Route::get('/machine/{id}/edit', 'MachineController@edit'); //formulario edición
-	//Route::post('/machine/{id}/edit', 'MachineController@update'); //actualizar
+	Route::get('/machine/{id}/edit', 'MachineController@edit'); //formulario edición
+	Route::post('/machine/{id}/edit', 'MachineController@update'); //actualizar
 	Route::get('/machine/{id}/delete', 'MachineController@destroy');
 
 	//EXCHANGE
@@ -132,6 +132,13 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
 	Route::get('/report/excel_saldoDisponible', 'ReportController@excelSaldoDisponible');
 	Route::get('/report/usuariosRegistrados', 'ReportController@usuariosRegistrados');
 	Route::get('/report/canjesRegistrados', 'ReportController@canjesRegistrados');
+
+
+	//MENSAJERIA
+	Route::get('/message', 'MessageController@index'); //listado
+	Route::get('/message/create', 'MessageController@create'); //formulario crear
+	Route::post('/message/create', 'MessageController@messagemail'); //guardar
+	Route::post('/userapp/create', 'ContactController@contactmail');
 
 
 });

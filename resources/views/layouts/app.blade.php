@@ -50,6 +50,7 @@
                     <li><a href="{{ url('/admin/sale/') }}" style="color:#ffffff">Ventas</a></li>         
                     <li><a href="{{ url('/admin/machine/') }}" style="color:#ffffff">Maquinas</a></li>
                     <li><a href="{{ url('/admin/banner/') }}" style="color:#ffffff">Banner</a></li>
+                    <li><a href="{{ url('/admin/message/') }}" style="color:#ffffff">Mensajes</a></li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="background: #4caf50;color: #ffffff">Parametros <b class="caret"></b></a>
                         <ul class="dropdown-menu">

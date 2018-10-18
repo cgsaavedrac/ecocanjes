@@ -29,7 +29,6 @@ class MachineController extends Controller
     {
         $regions = Region::where('active', '1')->orderBy('name')->get();
         $regions_combo = Region::pluck('name', 'id');
-        //return view('admin.deal.create')->with(compact('companies', 'companies_combo'));
         return view('admin.machine.create')->with(compact('regions', 'regions_combo'));
 
     }
@@ -111,7 +110,11 @@ class MachineController extends Controller
      */
     public function edit($id)
     {
-        //
+        $regions = Region::where('active', '1')->orderBy('name')->get();
+        $regions_combo = Region::pluck('name', 'id');
+
+        $machine = Machine::find($id);
+        return view('admin.machine.edit')->with(compact('machine', 'regions', 'regions_combo'));
     }
 
     /**
@@ -123,7 +126,97 @@ class MachineController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        
+        $machine = Machine::where('id', $id)->get();
+        foreach ($machine as $mac){
+            $terminal_number_db = $mac->terminal_number;
+        }
+
+
+
+        if ($terminal_number_db == $request->terminal_number){
+            //validaciones
+            $rules = [
+            
+                'region' => 'required',
+                'city' => 'required',
+                'address' => 'required|min:3',
+                'latitude' => 'required|numeric',
+                'longitude' => 'required|numeric',
+                'days_attention' => 'required',
+                'hours_attention' => 'required',
+                
+            ];
+            $message = [
+                
+                
+                'region.required' => 'Indique la Región',
+                'city.required' => 'Indique la Comuna',
+                'address.required' => 'Indique la Dirección',
+                'address.min' => 'La dirección debe contener al menos 3 caracteres.',
+                'latitude.required' => 'Indique la Latitud',
+                'latitude.numeric' => 'La latitud sólo acepta números',
+                'longitude.required' => 'Indique la Longitud',
+                'longitude.numeric' => 'La longitud sólo acepta números',
+                'days_attention.required' => 'Indique los días de atentión',
+                'hours_attention.required' => 'Indique las horas de atención'
+            ];      
+
+            $this->validate($request, $rules, $message);
+
+            $machine = Machine::find($id);
+            $machine->latitude = $request->input('latitude');
+            $machine->longitude = $request->input('longitude');
+            $machine->address = $request->input('address');
+            $machine->region_id = $request->input('region');
+            $machine->city_id = $request->input('city');    
+            $machine->days_attention = $request->input('days_attention');
+            $machine->hours_attention = $request->input('hours_attention');
+            $machine->save();
+            return redirect('admin/machine');
+        }else{
+            //validaciones
+            $rules = [
+                'terminal_number' => 'required|min:3',
+                'region' => 'required',
+                'city' => 'required',
+                'address' => 'required|min:3',
+                'latitude' => 'required|numeric',
+                'longitude' => 'required|numeric',
+                'days_attention' => 'required',
+                'hours_attention' => 'required',
+                'terminal_number' => 'unique:machines,terminal_number'
+            ];
+            $message = [
+                'terminal_number.required' => 'Ingrese el número de la Maquina',
+                'terminal_number.min' => 'El minimo es 3 caracteres',
+                'terminal_number.unique' => 'El número de la maquina ya existe',
+                'region.required' => 'Indique la Región',
+                'city.required' => 'Indique la Comuna',
+                'address.required' => 'Indique la Dirección',
+                'address.min' => 'La dirección debe contener al menos 3 caracteres.',
+                'latitude.required' => 'Indique la Latitud',
+                'latitude.numeric' => 'La latitud sólo acepta números',
+                'longitude.required' => 'Indique la Longitud',
+                'longitude.numeric' => 'La longitud sólo acepta números',
+                'days_attention.required' => 'Indique los días de atentión',
+                'hours_attention.required' => 'Indique las horas de atención'
+            ];      
+
+            $this->validate($request, $rules, $message);
+
+            $machine = Machine::find($id);
+            $machine->terminal_number = $request->input('terminal_number');
+            $machine->latitude = $request->input('latitude');
+            $machine->longitude = $request->input('longitude');
+            $machine->address = $request->input('address');
+            $machine->region_id = $request->input('region');
+            $machine->city_id = $request->input('city');
+            $machine->days_attention = $request->input('days_attention');
+            $machine->hours_attention = $request->input('hours_attention');
+            $machine->save();
+            return redirect('admin/machine');    
+        }    
     }
 
     /**

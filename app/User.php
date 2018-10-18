@@ -63,6 +63,7 @@ class User extends Authenticatable
         return $this->belongsTo(City::class);
     }
 
+
     /**
      * Send the password reset notification.
      *

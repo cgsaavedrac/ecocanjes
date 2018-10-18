@@ -48,6 +48,9 @@
                                     <td>{{ $machine->days_attention}}</td>
                                     <td>{{ $machine->hours_attention}}</td>
                                     <td class="td-actions text-right">
+                                        <a href="{{ url('/admin/machine/'.$machine->id.'/edit') }}" rel="tooltip" title="Editar Máquina" class="btn btn-success btn-simple btn-xs">
+                                            <i class="fa fa-edit"></i>
+                                        </a>
                                         <a href="{{ url('/admin/machine/'.$machine->id.'/delete') }}" onclick="return confirm('¿Esta seguro de eliminar este registro?')" rel="tooltip" title="Eliminar Maquina" class="btn btn-danger btn-simple btn-xs">
                                         <i class="fa fa-times"></i>
                                         </a>  
