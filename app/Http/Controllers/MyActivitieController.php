@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\RecyclingRecord;
+use App\Message;
 
 class MyActivitieController extends Controller
 {
@@ -40,8 +41,9 @@ class MyActivitieController extends Controller
         $ahorro_bioxido_carbono_plastico = number_format($kilos_reciclados_pet * 2.506, 0, ',', '.');
         //1 Kg de plástico = 5.0286 Kw de energía ahorrada
         $ahorro_energia_plastico = number_format($kilos_reciclados_pet * 5.0286, 0, ',', '.');
+        $mensajes_pendientes = Message::where('user_id', $user_id)->where('read', 0)->count();
         
-        return view('userapp.actividad.index')->with(compact('cantidad_reciclada_pet', 'cantidad_reciclada_lat', 'ahorro_agua_plastico', 'ahorro_bioxido_carbono_plastico', 'ahorro_energia_plastico', 'kilos_reciclados_pet', 'kilos_reciclados_lat', 'ahorro_agua_aluminio', 'ahorro_bioxido_carbono_aluminio', 'ahorro_energia_aluminio', 'basura_ahorrada'));
+        return view('userapp.actividad.index')->with(compact('cantidad_reciclada_pet', 'cantidad_reciclada_lat', 'ahorro_agua_plastico', 'ahorro_bioxido_carbono_plastico', 'ahorro_energia_plastico', 'kilos_reciclados_pet', 'kilos_reciclados_lat', 'ahorro_agua_aluminio', 'ahorro_bioxido_carbono_aluminio', 'ahorro_energia_aluminio', 'basura_ahorrada', 'mensajes_pendientes'));
     }    
         
 }

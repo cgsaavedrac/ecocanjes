@@ -50,6 +50,7 @@ Route::get('/userapp/periodos-facturacion', 'PageController@pagePeriodo');
 Route::get('/userapp/proceso-canje', 'PageController@procesoCanje');
 Route::get('userapp/maquinas', 'PageController@maquinas');
 Route::get('userapp/mensajes', 'MessageController@msnuser');
+Route::post('userapp/mensajes', 'MessageController@read');
 
 Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
 

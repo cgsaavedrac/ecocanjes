@@ -12,6 +12,7 @@ use App\exchange_grantees;
 use Carbon\Carbon;
 use App\User;
 use Illuminate\Support\Facades\Mail;
+USE App\Message;
 
 class CanjesController extends Controller
 {
@@ -48,8 +49,9 @@ class CanjesController extends Controller
             $msg2 = '';
         }
 
+        $mensajes_pendientes = Message::where('user_id', $user_id)->where('read', 0)->count();
         $grantees = Grantee::where('active', 1)->get();
-    	return view('userapp.canjes.index')->with(compact('total_nc', 'total_saldo_contable', 'grantees', 'msg', 'msg2'));
+    	return view('userapp.canjes.index')->with(compact('total_nc', 'total_saldo_contable', 'grantees', 'msg', 'msg2', 'mensajes_pendientes'));
     }
 
     public function confirmed(Request $request){
@@ -61,8 +63,10 @@ class CanjesController extends Controller
 
             $grantee = Grantee::find($grantee_id);
             $grantee_name = $grantee->name;
-        }    
-        return view('userapp.canjes.confirmed')->with(compact('number_bip', 'quantity_eco', 'quantity_eco_donar', 'grantee_name', 'grantee_id'));
+        } 
+        $user_id = auth()->user()->id;   
+        $mensajes_pendientes = Message::where('user_id', $user_id)->where('read', 0)->count();
+        return view('userapp.canjes.confirmed')->with(compact('number_bip', 'quantity_eco', 'quantity_eco_donar', 'grantee_name', 'grantee_id', 'mensajes_pendientes'));
     }
 
     public function canjear_eco($number_bip, $quantity_eco, $grantee_id, $quantity_eco_donar){
@@ -111,7 +115,9 @@ class CanjesController extends Controller
                 }
                 
             });
-            return view('userapp.canjes.result_transaction');            
+            $user_id = auth()->user()->id;
+            $mensajes_pendientes = Message::where('user_id', $user_id)->where('read', 0)->count();
+            return view('userapp.canjes.result_transaction')->with(compact('mensajes_pendientes'));            
         }
         else{
             $balance = New Balance();
@@ -157,7 +163,9 @@ class CanjesController extends Controller
                 }
                 
             });
-            return view('userapp.canjes.result_transaction');  
+            $user_id = auth()->user()->id;
+            $mensajes_pendientes = Message::where('user_id', $user_id)->where('read', 0)->count();
+            return view('userapp.canjes.result_transaction')->with(compact('mensajes_pendientes'));  
         }
         
           

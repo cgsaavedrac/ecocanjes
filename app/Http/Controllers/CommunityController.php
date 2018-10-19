@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\RecyclingRecord;
 use App\User;
+use App\Message;
 use DB;
 
 class CommunityController extends Controller
@@ -36,6 +37,8 @@ class CommunityController extends Controller
         }
         $ranking_usuarios = DB::select('select users.name, sum(if(recycling_records.recycling_type = '."'0'".', recycling_records.quantity, 0)) * 1000/33/1000 as kilos_pet, sum(if(recycling_records.recycling_type = '."'1'".', recycling_records.quantity, 0)) * 1000/65/1000 as kilos_lat from users, recycling_records WHERE users.id = recycling_records.user_id and users.admin = '."'0'".' and users.active = '."'1'".' and month(recycling_records.recycling_date) = MONTH(CURDATE()) group by users.name');
         
-        return view('userapp.comunidad.index')->with(compact('cantidad_reciclada', 'kilos_reciclados', 'ranking_usuarios', 'nivel'));
+        $user_id = auth()->user()->id;
+        $mensajes_pendientes = Message::where('user_id', $user_id)->where('read', 0)->count();
+        return view('userapp.comunidad.index')->with(compact('cantidad_reciclada', 'kilos_reciclados', 'ranking_usuarios', 'nivel', 'mensajes_pendientes'));
     }
 }

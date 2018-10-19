@@ -16,8 +16,9 @@ class MessageController extends Controller
 
     public function msnuser(){
     	$user_id = auth()->user()->id;
-    	$messages = Message::where('user_id', $user_id)->paginate(10);
-    	return view('userapp.mensajes.index')->with(compact('messages'));
+    	$mensajes_pendientes = Message::where('user_id', $user_id)->where('read', 0)->count();
+    	$messages = Message::where('user_id', $user_id)->where('read', 0)->paginate(10);
+    	return view('userapp.mensajes.index')->with(compact('messages', 'mensajes_pendientes'));
     }
 
     public function create(){
@@ -54,5 +55,16 @@ class MessageController extends Controller
         	
         });
         return view('admin/message/msn');
+    }
+
+    public function read(Request $request)
+    {
+        $reads = $request->input('read');
+        for ($i = 0; $i <= count($reads) - 1; $i++) {
+		    $message = Message::find($reads[$i]);
+	        $message->read = true;
+	        $message->save();
+		}
+        return back();
     }
 }
