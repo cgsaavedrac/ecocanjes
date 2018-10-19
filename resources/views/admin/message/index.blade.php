@@ -11,7 +11,7 @@
     <div class="container">
 
         <div class="section text-center">
-            <h2 class="title" style="color: #00529e">Listado de Ventas</h2>
+            <h2 class="title" style="color: #00529e">Listado de Mensajes</h2>
 
             <div class="team">
                 <div class="row">

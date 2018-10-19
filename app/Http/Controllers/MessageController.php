@@ -40,11 +40,15 @@ class MessageController extends Controller
 
         Mail::send('emails.mensajeria', $data, function($message){
         	$message->from('admin@pesic.cl', 'App Ecocanjes');
-        	$correos = Message::get();
+        	$correos = Message::where('send', 0)->get();
         	foreach($correos as $correo){
         		//$destinatarios = $request->input('destinatarios');
         		//dd($destinatarios);
+        		
         		$message->to($correo->user->email)->subject('Mensajería desde APP Ecocanjes');
+        		$message2 = Message::find($correo->id);
+        		$message2->send = true;
+        		$message2->save();
         	}
         	
         });
