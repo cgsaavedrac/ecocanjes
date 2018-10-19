@@ -5,13 +5,15 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use Illuminate\Support\Facades\Mail;
+use App\Message;
 
 class ContactController extends Controller
 {
     public function index(){
     	$id = auth()->user()->id;
         $user = User::find($id);
-    	return view('userapp.contacto.create')->with(compact('user'));
+        $mensajes_pendientes = Message::where('user_id', $id)->where('read', 0)->count();
+    	return view('userapp.contacto.create')->with(compact('user', 'mensajes_pendientes'));
     }
 
     public function contactmail(Request $request)

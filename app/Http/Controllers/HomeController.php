@@ -13,6 +13,7 @@ use App\Machine;
 use App\Banner;
 use App\Sale;
 use App\User;
+use App\Message;
 use DB;
 
 class HomeController extends Controller
@@ -57,7 +58,9 @@ class HomeController extends Controller
             $ahorro_energia_plastico = number_format($kilos_reciclados * 5.0286, 4, ',', '.');
             $ubicacion_maquinas = Machine::where('active', '1')->paginate(6);
             $user_saldo = ($user_balance_entradas + $user_balance_entradas_admin) - $user_balance_salidas;
-            return view('home')->with(compact('user_saldo', 'cantidad_reciclada', 'ahorro_agua_plastico', 'ahorro_bioxido_carbono_plastico', 'ahorro_energia_plastico', 'user_movimientos', 'ubicacion_maquinas', 'banners','banner'));
+
+            $mensajes_pendientes = Message::where('user_id', $user_id)->where('read', 0)->count();
+            return view('home')->with(compact('user_saldo', 'cantidad_reciclada', 'ahorro_agua_plastico', 'ahorro_bioxido_carbono_plastico', 'ahorro_energia_plastico', 'user_movimientos', 'ubicacion_maquinas', 'banners','banner', 'mensajes_pendientes'));
         }
     else{
             $mes_actual = date('F');

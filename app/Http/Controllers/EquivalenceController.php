@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Equivalence;
+use App\Message;
 
 class EquivalenceController extends Controller
 {
@@ -13,8 +14,10 @@ class EquivalenceController extends Controller
     }
 
     public function index2(){
+    $user_id = auth()->user()->id;
+    $mensajes_pendientes = Message::where('user_id', $user_id)->where('read', 0)->count();
     $equivalences = Equivalence::where('active', 1)->orderBy('id', 'DESC')->paginate(10);
-    return view('userapp.equivalence.index')->with(compact('equivalences'));  
+    return view('userapp.equivalence.index')->with(compact('equivalences', 'mensajes_pendientes'));  
     }
 
     public function edit($id)

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\User;
 Use App\Region;
 Use App\City;
+use App\Message;
 use Maatwebsite\Excel\Facades\Excel;
 
 class UserController extends Controller
@@ -31,7 +32,8 @@ class UserController extends Controller
 
         $id = auth()->user()->id;
         $user = User::find($id);
-        return view('userapp.perfil.create')->with(compact('user', 'regions', 'regions_combo'));
+        $mensajes_pendientes = Message::where('user_id', $id)->where('read', 0)->count();
+        return view('userapp.perfil.create')->with(compact('user', 'regions', 'regions_combo', 'mensajes_pendientes'));
     }
     public function getCity(Request $request, $id){
         if ($request->ajax()){
@@ -66,7 +68,8 @@ class UserController extends Controller
         $user->region_id = $request->input('region2');
         $user->city_id = $request->input('city2');
         $user->save();
-        return view('userapp/perfil/msn');
+        $mensajes_pendientes = Message::where('user_id', $id)->where('read', 0)->count();
+        return view('userapp/perfil/msn')->with(compact('mensajes_pendientes'));
     }
 
     /**

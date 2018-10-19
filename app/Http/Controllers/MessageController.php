@@ -14,6 +14,12 @@ class MessageController extends Controller
     	return view('admin.message.index')->with(compact('messages', 'users'));
     }
 
+    public function msnuser(){
+    	$user_id = auth()->user()->id;
+    	$messages = Message::where('user_id', $user_id)->paginate(10);
+    	return view('userapp.mensajes.index')->with(compact('messages'));
+    }
+
     public function create(){
     	$users = User::where('admin', '0')->get();
     	return view('admin.message.create')->with(compact('users'));
@@ -32,8 +38,6 @@ class MessageController extends Controller
 		}
 
         $data = array(
-        	//'name' => auth()->user()->name,
-        	//'motivo' => $request->input('motivo'),
         	'comentarios' => $request->input('comment'),
         	'destinatarios' => $request->input('destinatarios'),
         );
@@ -42,9 +46,6 @@ class MessageController extends Controller
         	$message->from('admin@pesic.cl', 'App Ecocanjes');
         	$correos = Message::where('send', 0)->get();
         	foreach($correos as $correo){
-        		//$destinatarios = $request->input('destinatarios');
-        		//dd($destinatarios);
-        		
         		$message->to($correo->user->email)->subject('Mensajería desde APP Ecocanjes');
         		$message2 = Message::find($correo->id);
         		$message2->send = true;
