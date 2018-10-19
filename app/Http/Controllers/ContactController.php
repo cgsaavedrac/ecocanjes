@@ -33,6 +33,8 @@ class ContactController extends Controller
         	}
         	
         });
-        return view('userapp/contacto/msn');
+        $user_id = auth()->user()->id;
+        $mensajes_pendientes = Message::where('user_id', $user_id)->where('read', 0)->count();
+        return view('userapp/contacto/msn')->with(compact('mensajes_pendientes'));
     }
 }
