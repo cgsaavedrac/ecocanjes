@@ -20,7 +20,7 @@
                     </ul>
                 </div>
             @endif        
-            <form class="form" method="POST" action="{{ url('/admin/message/create') }}">
+            <form name="form" class="form" method="POST" action="{{ url('/admin/message/create') }}">
                 {{ csrf_field() }}
                 @if ($errors->any())
                 <div class="alert alert-danger">
@@ -52,7 +52,8 @@
                     <div class="col-sm-12">
                         <div class="form-group label-floating">
                             <label class="control-label">Comentarios</label>
-                            <textarea class="form-control" name="comment" id="comment" cols="30" rows="10" required>{{ old('comment') }}</textarea>
+                            <textarea class="form-control" name="comment" id="comment" placeholder="Escriba Aquí su mensaje, este puede tener hasta 191 caracteres" maxlength="191" cols="30" rows="10" required onKeyDown="cuenta()" onKeyUp="cuenta()">{{ old('comment') }}</textarea>
+                            <input type="text" name="caracteres" size="4" class="form-control" disabled="">Caracteres
                         </div>
                     </div>
                 </div>                  
@@ -64,6 +65,11 @@
     </div>
 
 </div>
+<script> 
+function cuenta(){ 
+        document.form.caracteres.value =document.form.comment.value.length 
+} 
+</script>
 @include('includes.footer')
 @endsection
 
