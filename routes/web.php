@@ -15,24 +15,9 @@ Route::get('/', function () {
     return view('auth/login');
 });
 
-
-Route::get('sendmail', function() {
-	$data = array(
-		'name' => 'Prueba de Correo',
-	);
-
-	Mail::send('emails.welcome', $data, function($message){
-		$message->from('admin@pesic.cl', 'Prueba de Correo');
-		$message->to('claudiosaavedra@pesic.cl')->subject('Test de Correo');
-	});
-
-	return "Tu mail ha sido enviado";
-});
-
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-//Route::post('/home', 'HomeController@canjear_eco');
 Route::get('/userapp/perfil/create', 'UserController@getPerfil');
 Route::get('/userapp/perfil/cities/{id}', 'UserController@getCity');
 Route::post('/userapp/perfil/{id}/msn', 'UserController@actPerfil');

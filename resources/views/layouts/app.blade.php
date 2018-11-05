@@ -41,7 +41,7 @@
                 </button>
                 <a class="navbar-brand" href="#" style="color: #ffffff"><i class="material-icons">account_circle</i>{{ Auth::user()->name }}</a>
                 @if (auth()->user()->admin == '0') 
-                <a class="navbar-brand" href="{{ url('/userapp/mensajes/') }}" style="color: #ffffff"><i class="material-icons">sms</i>{{ $mensajes_pendientes }}</a>
+                <a class="navbar-brand" href="{{ url('/userapp/mensajes/') }}" style="color: #ffffff"><i class="material-icons">sms</i>{{ $mensajes_pendientes ? $mensajes_pendientes : 'No tiene mensajes' }}</a>
                 @endif
             </div>
 

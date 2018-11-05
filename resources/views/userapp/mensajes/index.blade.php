@@ -61,5 +61,5 @@
             document.f1.elements[i].checked=0 
     }
 </script>
-@include('includes.footer')
+@include('includes.footeruserapp')
 @endsection
