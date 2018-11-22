@@ -4,26 +4,16 @@
 @section('body-class', 'product-page')
 
 @section('content')
-<style>
-    .map-responsive{
-    left:0;
-    width:100%;
-    position: absolute;
-    z-index: -1;
-    background: #fff;
-    
-  }
-</style>
-<div class="map-responsive">
-    <div class="container">
+
+    <div class="container" style="background:#fff">
         <div class="section">
-            <h2 class="title text-center">Mi reciclaje</h2>       
+            <h4 class="title text-center">Mi reciclaje</h4>       
                 <div class="row">
                     <div class="col-xs-6 text-center">
-                        <div><h3>{{ number_format($cantidad_reciclada_pet, 0, '', '.') }}<br>botellas</h3></div>   
+                        <div><h4>{{ number_format($cantidad_reciclada_pet, 0, '', '.') }}<br>botellas</h4></div>   
                     </div>
                     <div class="col-xs-6 text-center">
-                        <div><h3>{{ number_format($cantidad_reciclada_lat, 0, '', '.') }}<br>latas</h3></div>
+                        <div><h4>{{ number_format($cantidad_reciclada_lat, 0, '', '.') }}<br>latas</h4></div>
                     </div>
                 </div>
                 <div class="row">
@@ -48,7 +38,7 @@
         </div>
     </div>
 
-</div>
+
 @include('includes.footeruserapp')
 @endsection
 
