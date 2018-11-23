@@ -28,7 +28,14 @@ class MessageController extends Controller
 
     public function messagemail(Request $request)
     {
+        //dd($request->input('correos'));
+        //$correos = $request->input('correos');
+        //$porciones = explode(",", $correos);
+        //dd(count($porciones));
         $destinatarios = $request->input('destinatarios');
+        //dd($destinatarios);
+
+
         $fecha_msn = date("Ymd");
         for ($i = 0; $i <= count($destinatarios) - 1; $i++) {
 		    $message = New Message();
@@ -66,5 +73,10 @@ class MessageController extends Controller
 	        $message->save();
 		}
         return back();
+    }
+
+    public function data(){
+        $correos = User::where('admin', '0')->pluck('email');
+        return $correos;
     }
 }

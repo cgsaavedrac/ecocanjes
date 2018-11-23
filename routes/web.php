@@ -126,6 +126,7 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
 	Route::get('/message/create', 'MessageController@create'); //formulario crear
 	Route::post('/message/create', 'MessageController@messagemail'); //guardar
 	Route::post('/userapp/create', 'ContactController@contactmail');
+	Route::get('/message/json', 'MessageController@data');
 
 
 });

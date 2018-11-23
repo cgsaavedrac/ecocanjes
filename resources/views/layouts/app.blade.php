@@ -123,8 +123,9 @@
     <!-- Control Center for Material Kit: activating the ripples, parallax effects, scripts from the example pages etc -->
     <script src="{{ asset('js/dropdown.js') }}" type="text/javascript"></script>
     <script src="{{ asset('js/material-kit.js') }}" type="text/javascript"></script>
-    <script type="text/javascript" src="{{ asset('js/jquery-1.11.1.min.js') }}"></script>
+    <script src="{{ asset('js/jquery-1.11.1.min.js') }}"></script>
     <script src="{{ asset('js/responsiveslides.min.js') }}"></script>
+    @yield('scripts')
 
     <script>
 
