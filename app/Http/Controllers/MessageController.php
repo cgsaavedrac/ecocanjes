@@ -40,8 +40,15 @@ class MessageController extends Controller
         for ($i = 0; $i <= count($destinatarios) - 1; $i++) {
 		    $message = New Message();
 	        $message->message_code = 'MEN'.$fecha_msn.'-'.$i;
-	        $message->user_id = $destinatarios[$i];
-	        $message->message = $request->input('comment');
+	        $users = User::where('email', $destinatarios[$i])->get();
+            foreach ($users as $user){
+                $id = $user->id;
+            //$message->user_id = $destinatarios[$i];
+            //dd($id);
+            }
+	        //dd($id);
+            $message->user_id = $id;
+            $message->message = $request->input('comment');
 	        $message->save();
 		}
 
