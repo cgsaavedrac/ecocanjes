@@ -43,10 +43,7 @@ class MessageController extends Controller
 	        $users = User::where('email', $destinatarios[$i])->get();
             foreach ($users as $user){
                 $id = $user->id;
-            //$message->user_id = $destinatarios[$i];
-            //dd($id);
             }
-	        //dd($id);
             $message->user_id = $id;
             $message->message = $request->input('comment');
 	        $message->save();

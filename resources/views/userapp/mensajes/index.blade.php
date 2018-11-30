@@ -16,23 +16,24 @@
                     <div class="table-responsive">
                         <form class="form" name="f1" method="POST" action="{{ url('/userapp/mensajes/') }}">
                             {{ csrf_field() }}
+                            <button class="btn btn-primary">Marcar como leido</button><br>
                             <table class="table table-condensed">
                                 <thead>
                                     <tr style="color: #00529e;font-weight: 500;">
-                                        <th class="col-md-2 text-center"><button class="btn btn-primary">Marcar como leido</button><br><a href="javascript:seleccionar_todo()">Marcar todos</a> | 
+                                        <th class="col-xs-1 text-left"><a href="javascript:seleccionar_todo()">Marcar Todos</a>|<br>
 <a href="javascript:deseleccionar_todo()">Marcar ninguno</a> </th>
-                                        <th class="col-md-2 text-center">ID</th>
-                                        <th class="text-center">Mensaje</th>
-                                        <th class="col-md-2 text-center">Fecha de envío</th>
+                                        <th class="col-xs-1 text-left">ID</th>
+                                        <th class="col-xs-6 text-center">Mensaje</th>
+                                        <th class="col-xs-2 text-center">Fecha de envío</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach ($messages as $message)
                                     <tr>
-                                        <td class="col-md-2 text-center"><input type="checkbox" name="read[]" id="read" value="{{$message->id }}"></td>
-                                        <td class="col-md-2 text-center">{{ $message->id}}</td>
-                                        <td class="text-justify">{{ $message->message }}</td>
-                                        <td class="col-md-2 text-center">{{ $message->created_at}}</td>
+                                        <td class="col-xs-1 text-left"><input type="checkbox" name="read[]" id="read" value="{{$message->id }}"></td>
+                                        <td class="col-xs-1 text-left">{{ $message->id}}</td>
+                                        <td class="col-xs-6 text-justify">{{ $message->message }}</td>
+                                        <td class="col-xs-2 text-center">{{ $message->created_at}}</td>
                                     </tr>
                                     @endforeach
                                 </tbody>

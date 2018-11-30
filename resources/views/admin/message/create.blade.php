@@ -122,30 +122,6 @@ function cuenta(){
                 });
             });
         }
-        var next = 0;
-        //function remover(){
-            //next++;
-           // $('#search1').remove('#remover1');
-           // $('#remover1').remove();
-           // alert(next);
-        //}
-        //$('#remover1').click(function(event) {
-        //$('#search1').remove();
-        //});
-        //var nextinput = 0;
-        //alert(nextinput);
-        //function Remover(){
-        //    nextinput++;
-        //    $('#search'+nextinput).remove();
-        //}
-        
-
-
-
-
-
-
-       
     </script>
     <script type="text/javascript">
 
