@@ -13,8 +13,12 @@ return [
     | and private_key is the Secret key.
     |
     */
+    /*CLAVES ANTERIORES CON CORREO DE PESIC
     'public_key'     => env('RECAPTCHA_PUBLIC_KEY', '6Le092EUAAAAAPE7VCRM225jq8pPeSWn2KiA2x8g'),
     'private_key'    => env('RECAPTCHA_PRIVATE_KEY', '6Le092EUAAAAAIYsACoM4lmwCDkkBMZzxRAmBZqs'),
+    */
+    'public_key'     => env('RECAPTCHA_PUBLIC_KEY', '6LfyXZEUAAAAAFt0Va1fr1KauECzLG3yba0vVWke'),
+    'private_key'    => env('RECAPTCHA_PRIVATE_KEY', '6LfyXZEUAAAAAEiHlPoMfbfvLAOtIUd6FboRtPZf'),
 
     /*
     |--------------------------------------------------------------------------
