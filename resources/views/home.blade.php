@@ -177,7 +177,10 @@ function initMap(){
     }
 }  
 </script>
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBso25wWBAGogK7OoheU_UqEIm10Y2Gyn8&callback=initMap"></script>
+<!--KEY DE PESIC<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBso25wWBAGogK7OoheU_UqEIm10Y2Gyn8&callback=initMap"></script>-->
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAfwxv9lL4h3oUqmYVBHkm2ie0tqyJZXFA&callback=initMap"></script>
+
+
 <div class="footer2" style="margin-bottom: 0px;background-color: #4caf50;color: #ffffff !important">
   <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
     <div class="carousel-inner" role="listbox">
