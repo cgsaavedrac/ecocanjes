@@ -15,6 +15,10 @@ Route::get('/', function () {
     return view('auth/login');
 });
 
+Route::get('/terminos-condiciones', function () {
+	return view('terminos-condiciones');
+});
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
