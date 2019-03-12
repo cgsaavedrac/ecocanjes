@@ -26,9 +26,9 @@
 </style>
 <div class="footer" style="margin-bottom: 0px;background-color: #4caf50;color: #ffffff !important">
   <div id="main2">
-    <div class="text-center"><a href="{{ url('/userapp/comunidad') }}" style="color:#fff"><i class="material-icons">group</i><br>Comunidad</a></div>
-    <div class="text-center"><a href="{{ url('/userapp/canjes') }}" style="color:#fff"><i class="material-icons">cached</i><br>Beneficios</a></div>
-    <div class="text-center"><a href="{{ url('/userapp/actividad') }}" style="color:#fff"><i class="material-icons">mood</i><br>Mi actividad</a></div>
-    <div class="text-center"><a href="{{ url('/home') }}" style="color:#fff"><i class="material-icons">place</i><br>Reciclar</a></div>
+    <div class="text-center"><a href="{{ url('/userapp/comunidad') }}" style="color:#fff"><img src="{{ asset('img/IconosMenuAbajo/comunidad.png') }}" alt="Comunidad"><br>Comunidad</a></div>
+    <div class="text-center"><a href="{{ url('/userapp/canjes') }}" style="color:#fff"><img src="{{ asset('img/IconosMenuAbajo/beneficios.png') }}" alt="Beneficios"><br>Beneficios</a></div>
+    <div class="text-center"><a href="{{ url('/userapp/actividad') }}" style="color:#fff"><img src="{{ asset('img/IconosMenuAbajo/mi_reciclaje.png') }}" alt="Mi Actividad"><br>Mi actividad</a></div>
+    <div class="text-center"><a href="{{ url('/home') }}" style="color:#fff"><img src="{{ asset('img/IconosMenuAbajo/reciclar.png') }}" alt="Reciclar"><br>Reciclar</a></div>
   </div>
 </div>
